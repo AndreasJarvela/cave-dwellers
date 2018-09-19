@@ -4,5 +4,5 @@ using UnityEngine;
 
 public interface IBehaviourState {
 
-    void Update();
+    IAction NextAction();
 }

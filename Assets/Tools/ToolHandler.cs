@@ -9,6 +9,7 @@ public class ToolHandler : MonoBehaviour {
     public Tilemap toolEffects;
     public TileBase miningEffect;
     public TileBase wall;
+    public TileBase floor;
 
     public Grid grid;
 
@@ -23,9 +24,8 @@ public class ToolHandler : MonoBehaviour {
     // Use this for initialization
     void Start () {
         toolList = new List<ITool>();
-
         toolList.Add(new DefaultTool());
-        toolList.Add(new MiningTool(walls, toolEffects, miningEffect, wall, grid));
+        toolList.Add(new MiningTool(miningEffect, wall, floor));
 
         setTool(ToolType.MINE);
     }

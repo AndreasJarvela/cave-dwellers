@@ -5,45 +5,36 @@ using Pathfinding;
 
 public class FreeRoamState : IBehaviourState {
 
-    private bool timeset = false;
-    private bool beingForced = false;
-    private float time = 0;
-    private float roamingRadius = 2f;
+    private Dweller dweller;
+    private float roamingRadius;
 
-    IAstarAI ai;
-
-
-    public FreeRoamState(IAstarAI ai)
+    public FreeRoamState(Dweller dweller)
     {
-        this.ai = ai;
+        this.dweller = dweller;
+        roamingRadius = 1f;
     }
 
     Vector3 PickRandomPoint()
     {
         var point = Random.insideUnitSphere * roamingRadius;
-        point += ai.position;
+        point += dweller.GetComponent<IAstarAI>().position;
         return point;
     }
 
-    public void Update()
+    private bool justMoved = false;
+
+    public IAction NextAction()
     {
-
-        if (!timeset && !ai.pathPending && (ai.reachedEndOfPath || !ai.hasPath))
+        if (!justMoved)
         {
-            ai.destination = PickRandomPoint();
-            ai.SearchPath();
-            time = Time.time + 5f;
-            timeset = true;
+            justMoved = true;
+            return new MoveAction(PickRandomPoint());
         }
-
-        if (timeset && Time.time > time)
+        else
         {
-            ai.destination = PickRandomPoint();
-            ai.SearchPath();
-            timeset = false;
+            justMoved = false;
+            return new WaitAction(1f);
         }
-
     }
-
 
 }

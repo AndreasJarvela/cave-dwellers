@@ -4,9 +4,6 @@ using UnityEngine;
 
 public interface IDweller {
 
-    void Assign(bool assigned);
-    bool IsAssigned();
-
     void SetEnergy(int energy);
     int GetEnergy();
 

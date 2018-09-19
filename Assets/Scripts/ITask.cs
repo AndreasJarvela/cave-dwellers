@@ -5,8 +5,7 @@ using Pathfinding;
 
 public interface ITask
 {
-
-    void AssignDweller();
-    Seeker ReleaseDweller();
+    Dweller ReleaseDweller();
+    IAction NextAction();
 
 }

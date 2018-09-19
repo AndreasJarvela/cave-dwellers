@@ -6,27 +6,35 @@ using UnityEngine.Tilemaps;
 public class MiningTool : ITool {
 
     public Tilemap walls;
+    public Tilemap floor;
     public Tilemap toolEffects;
-
     public TileBase miningEffect;
     public TileBase wall;
+    public TileBase floorTile;
 
     public Grid grid;
 
-    public MiningTool(Tilemap walls, Tilemap toolEffects, TileBase miningEffect, TileBase wall, Grid grid)
+    public MiningTool(TileBase miningEffect, TileBase wall, TileBase floorTile)
     {
-        this.walls = walls;
-        this.toolEffects = toolEffects;
+        this.grid = GameObject.Find("Grid").GetComponent<Grid>();
+        this.walls = GameObject.Find("Walls").GetComponent<Tilemap>();
+        this.toolEffects = GameObject.Find("ToolEffects").GetComponent<Tilemap>();
+        this.floor = GameObject.Find("Floor").GetComponent<Tilemap>();
         this.miningEffect = miningEffect;
         this.wall = wall;
-        this.grid = grid;
+        this.floorTile = floorTile;
     }
     
     public void PlaceMarker(Vector3Int cellPosition)
     {
+        // TODO
+        // Create a MineTask on cellposition
+
         if (walls.GetTile(cellPosition) == wall)
         {
-            toolEffects.SetTile(cellPosition, miningEffect);
+
+            GameObject.Find("GameManager").GetComponent<WorkHandler>().AddTask(new MineTask(miningEffect, wall, floorTile, cellPosition));
+            //toolEffects.SetTile(cellPosition, miningEffect
         }
 
     }

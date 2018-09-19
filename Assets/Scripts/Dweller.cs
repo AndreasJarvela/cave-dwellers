@@ -2,32 +2,24 @@
 using System.Collections.Generic;
 using UnityEngine;
 using Pathfinding;
+using System;
 
 public class Dweller : MonoBehaviour, IDweller {
 
     private int health;
     private int energy;
-    private string name;
+    private string dwellerName;
 
-    private IAstarAI ai;
     private IBehaviourState state;
-    
-
-    private bool isAssigned = false;
-
+    private IAction currentAction;
+    internal Action<Path> pathCallback;
 
     void Start()
     {
         this.health = 100;
         this.energy = 100;
-        this.name = "Dweller";
-        ai = GetComponent<IAstarAI>();
-        state = new FreeRoamState(ai);
-    }
-
-    public void Assign(bool assigned)
-    {
-        isAssigned = true;
+        this.dwellerName = "Dweller";
+        state = new FreeRoamState(this);
     }
 
     public int GetHealth()
@@ -37,17 +29,12 @@ public class Dweller : MonoBehaviour, IDweller {
         
     public string GetName()
     {
-        return name;
+        return dwellerName;
     }
 
     public int GetEnergy()
     {
         return energy;
-    }
-
-    public bool IsAssigned()
-    {
-        return isAssigned;
     }
 
     public void SetHealth(int health)
@@ -57,7 +44,7 @@ public class Dweller : MonoBehaviour, IDweller {
 
     public void SetName(string name)
     {
-        this.name = name;
+        this.dwellerName = name;
     }
 
     public void SetEnergy(int energy)
@@ -65,10 +52,18 @@ public class Dweller : MonoBehaviour, IDweller {
         this.energy = energy;
     }
 
-
     void Update()
     {
-        state.Update();
+        if (currentAction == null)
+        {
+            currentAction = state.NextAction();
+        }
+
+        currentAction.Update(this);
+        if(currentAction.Completed())
+        {
+            currentAction = state.NextAction();
+        }
     }
  
 }

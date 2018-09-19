@@ -4,17 +4,16 @@ using UnityEngine;
 
 public class WorkingState : IBehaviourState
 {
+    private ITask assignedTask;
 
-    public WorkingState()
+    public WorkingState(ITask assignedTask)
     {
-
+        this.assignedTask = assignedTask;
     }
 
-
-    public void Update()
+    public IAction NextAction()
     {
-        
+        throw new System.NotImplementedException();
     }
 
-    
 }
