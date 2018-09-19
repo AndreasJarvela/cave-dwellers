@@ -25,6 +25,7 @@ GameObject:
   - component: {fileID: 114830529919111246}
   - component: {fileID: 114433112007152676}
   - component: {fileID: 114035053198123334}
+  - component: {fileID: 114555649604737062}
   m_Layer: 0
   m_Name: Dweller
   m_TagString: Untagged
@@ -113,6 +114,21 @@ MonoBehaviour:
   interpolatePathSwitches: 1
   switchPathInterpolationSpeed: 5
   targetCompatibility: {fileID: 0}
+--- !u!114 &114555649604737062
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1886715677188646}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5747a10bbb008de4bb369671ea5d80f5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  health: 100
+  energy: 100
+  name: Josh
+  isAssigned: 0
 --- !u!114 &114830529919111246
 MonoBehaviour:
   m_ObjectHideFlags: 1

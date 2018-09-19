@@ -15,17 +15,18 @@ public class Initialize : MonoBehaviour {
     public TileBase wallTile;
     public TileBase floorTile;
 
+
     // Use this for initialization
     void Start() {
         initializeMap();
+        StartCoroutine(ScanGraph());
+    }
+
+    private IEnumerator ScanGraph()
+    {
+        yield return new WaitForSeconds(0);
         AstarPath.active.Scan();
     }
-
-    // Update is called once per frame
-    void Update() {
-
-    }
-
 
 
     void initializeMap()
@@ -49,5 +50,11 @@ public class Initialize : MonoBehaviour {
         }
     }
 
+
+    // Update is called once per frame
+    void Update()
+    {
+
+    }
 
 }
