@@ -12,5 +12,10 @@ public interface IDweller {
 
     void SetName(string name);
     string GetName();
+
+    void SetState(IBehaviourState newState);
+    IBehaviourState GetState();
+
+    void AssignTask(ITask task);
     
 }

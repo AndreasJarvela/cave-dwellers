@@ -5,15 +5,22 @@ using UnityEngine;
 public class WorkingState : IBehaviourState
 {
     private ITask assignedTask;
+    private Dweller dweller;
 
-    public WorkingState(ITask assignedTask)
+    public WorkingState(Dweller dweller, ITask assignedTask)
     {
         this.assignedTask = assignedTask;
+        this.dweller = dweller;
     }
 
     public IAction NextAction()
     {
-        throw new System.NotImplementedException();
+        IAction nextAction = assignedTask.NextAction();
+        if (nextAction != null)
+        {
+            return nextAction;
+        }
+        return new NewStateAction(new FreeRoamState(dweller));
     }
 
 }

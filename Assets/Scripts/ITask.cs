@@ -7,5 +7,7 @@ public interface ITask
 {
     Dweller ReleaseDweller();
     IAction NextAction();
+    bool checkActivity();
+    void updateActivity();
 
 }

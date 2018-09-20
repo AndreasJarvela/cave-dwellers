@@ -30,11 +30,9 @@ public class MiningTool : ITool {
         // TODO
         // Create a MineTask on cellposition
 
-        if (walls.GetTile(cellPosition) == wall)
+        if (walls.GetTile(cellPosition) == wall && toolEffects.GetTile(cellPosition) != miningEffect)
         {
-
             GameObject.Find("GameManager").GetComponent<WorkHandler>().AddTask(new MineTask(miningEffect, wall, floorTile, cellPosition));
-            //toolEffects.SetTile(cellPosition, miningEffect
         }
 
     }

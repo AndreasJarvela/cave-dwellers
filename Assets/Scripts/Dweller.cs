@@ -19,7 +19,27 @@ public class Dweller : MonoBehaviour, IDweller {
         this.health = 100;
         this.energy = 100;
         this.dwellerName = "Dweller";
-        state = new FreeRoamState(this);
+        SetState(new FreeRoamState(this));
+    }
+
+    public void AssignTask(ITask task)
+    {
+        SetState(new WorkingState(this, task));
+    }
+
+    public void SetState(IBehaviourState newState)
+    {
+        state = newState;
+    }
+
+    public IBehaviourState GetState()
+    {
+        return state;
+    }
+
+    public void ForceAction(IAction forced)
+    {
+        currentAction = forced;
     }
 
     public int GetHealth()
@@ -52,6 +72,7 @@ public class Dweller : MonoBehaviour, IDweller {
         this.energy = energy;
     }
 
+
     void Update()
     {
         if (currentAction == null)
@@ -65,5 +86,6 @@ public class Dweller : MonoBehaviour, IDweller {
             currentAction = state.NextAction();
         }
     }
- 
+
+
 }

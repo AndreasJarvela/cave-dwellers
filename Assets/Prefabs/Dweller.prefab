@@ -28,7 +28,7 @@ GameObject:
   - component: {fileID: 114555649604737062}
   m_Layer: 0
   m_Name: Dweller
-  m_TagString: Untagged
+  m_TagString: Dweller
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -111,7 +111,7 @@ MonoBehaviour:
   enableRotation: 0
   rotationIn2D: 0
   rotationSpeed: 10
-  interpolatePathSwitches: 1
+  interpolatePathSwitches: 0
   switchPathInterpolationSpeed: 5
   targetCompatibility: {fileID: 0}
 --- !u!114 &114555649604737062
@@ -158,12 +158,12 @@ MonoBehaviour:
     exactEndPoint: 3
     useRaycasting: 0
     mask:
+      serializedVersion: 2
       m_Bits: 4294967295
     useGraphRaycasting: 0
   traversableTags: -1
   tagPenalties: 0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
   graphMask: -1
-  lastPathID: 0
 --- !u!212 &212080784338145376
 SpriteRenderer:
   m_ObjectHideFlags: 1

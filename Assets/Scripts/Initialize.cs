@@ -18,7 +18,8 @@ public class Initialize : MonoBehaviour {
 
     // Use this for initialization
     void Start() {
-        initializeMap();
+        InitializeMap();
+        PopulateWorkHandlerWithCurrentDwellers();
         StartCoroutine(ScanGraph());
     }
 
@@ -29,7 +30,16 @@ public class Initialize : MonoBehaviour {
     }
 
 
-    void initializeMap()
+    void PopulateWorkHandlerWithCurrentDwellers()
+    {
+        foreach(GameObject d in GameObject.FindGameObjectsWithTag("Dweller"))
+        {
+            GetComponent<WorkHandler>().AddDweller(d.GetComponent<Dweller>());
+        }
+
+    }
+
+    void InitializeMap()
     {
         int[,] map = new int[width, height];
         for (int x = -map.GetUpperBound(0) / 2; x < map.GetUpperBound(0) / 2; x++)
