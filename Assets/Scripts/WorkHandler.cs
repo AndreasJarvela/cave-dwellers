@@ -8,7 +8,7 @@ public class WorkHandler : MonoBehaviour {
 
     List<Dweller> dwellers = new List<Dweller>();
 
-    Queue<ITask> activeTasks = new Queue<ITask>();
+    List<ITask> activeTasks = new List<ITask>();
     List<ITask> inactiveTasks = new List<ITask>();
 
     // Use this for initialization
@@ -19,13 +19,51 @@ public class WorkHandler : MonoBehaviour {
 
     public void AddTask(ITask newTask)
     {
-        if (newTask.checkActivity())
+        if (newTask.CheckActivity())
         {
-            activeTasks.Enqueue(newTask);
+            activeTasks.Add(newTask);
         }
         else
         {
             inactiveTasks.Add(newTask);
+        }
+    }
+
+    public ITask GetTask(Vector3Int taskPosition)
+    {
+        foreach (ITask task in inactiveTasks)
+        {
+            if (taskPosition == task.GetTaskPosition())
+            {
+                return task;
+            }
+        }
+
+        return null;
+    }
+
+    public void RemoveTask(ITask taskToRemove)
+    {
+        for (int i = inactiveTasks.Count - 1; i >= 0; i--)
+        {
+            ITask task = inactiveTasks[i];
+
+            if (ReferenceEquals(taskToRemove, task))
+            {
+                task.CleanUp();
+                inactiveTasks.Remove(task);
+            }
+        }
+
+        for (int i = activeTasks.Count - 1; i >= 0; i--)
+        {
+            ITask task = activeTasks[i];
+
+            if (ReferenceEquals(taskToRemove, task))
+            {
+                task.CleanUp();
+                activeTasks.Remove(task);
+            }
         }
     }
 
@@ -41,8 +79,9 @@ public class WorkHandler : MonoBehaviour {
         {
             if (d.GetState() is FreeRoamState)
             {
-                ITask task = activeTasks.Dequeue();
+                ITask task = activeTasks[0];
                 d.AssignTask(task);
+                activeTasks.RemoveAt(0);
                 break;
             }
         }
@@ -65,11 +104,12 @@ public class WorkHandler : MonoBehaviour {
 
     // Update is called once per frame
     void Update () {
+        
         if (IsInactiveTaskAvailable())
         {
             UpdateInactiveTasks();
         }
-
+        
         if (IsTaskAvailable() && IsDwellerAvailable())
         {
             AssignDwellerToTask();
@@ -78,13 +118,15 @@ public class WorkHandler : MonoBehaviour {
 
     private void UpdateInactiveTasks()
     {
-        foreach (ITask task in inactiveTasks)
+
+        for (int i = inactiveTasks.Count - 1; i >= 0; i--)
         {
-            task.updateActivity();
-            if (task.checkActivity())
+            ITask task = inactiveTasks[i];
+            task.UpdateActivity();
+            if (task.CheckActivity())
             {
                 inactiveTasks.Remove(task);
-                activeTasks.Enqueue(task);
+                activeTasks.Add(task);
             }
         }
     }

@@ -41,7 +41,8 @@ public class MiningTool : ITool {
     {
         if (toolEffects.GetTile(cellPosition) == miningEffect)
         {
-            toolEffects.SetTile(cellPosition, null);
+            ITask task = GameObject.Find("GameManager").GetComponent<WorkHandler>().GetTask(cellPosition);
+            GameObject.Find("GameManager").GetComponent<WorkHandler>().RemoveTask(task);
         }
 
     }

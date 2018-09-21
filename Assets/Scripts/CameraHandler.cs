@@ -12,22 +12,22 @@ public class CameraHandler : MonoBehaviour {
     // Update is called once per frame
     void Update () {
 
-        if (Input.mousePosition.y >= Screen.height * 0.97)
+        if (Input.mousePosition.y >= Screen.height * 0.97 || Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.UpArrow))
         {
             transform.Translate(Vector3.up * Time.deltaTime * ScrollSpeed, Space.World);
         }
 
-        if (Input.mousePosition.y <= Screen.height * 0.03)
+        if (Input.mousePosition.y <= Screen.height * 0.03 || Input.GetKey(KeyCode.S) || Input.GetKey(KeyCode.DownArrow))
         {
             transform.Translate(Vector3.down * Time.deltaTime * ScrollSpeed, Space.World);
         }
 
-        if (Input.mousePosition.x >= Screen.width * 0.97)
+        if (Input.mousePosition.x >= Screen.width * 0.97 || Input.GetKey(KeyCode.D) || Input.GetKey(KeyCode.RightArrow)) 
         {
             transform.Translate(Vector3.right * Time.deltaTime * ScrollSpeed, Space.World);
         }
 
-        if (Input.mousePosition.x <= Screen.width * 0.03)
+        if (Input.mousePosition.x <= Screen.width * 0.03 || Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.LeftArrow))
         {
             transform.Translate(Vector3.left * Time.deltaTime * ScrollSpeed, Space.World);
         }

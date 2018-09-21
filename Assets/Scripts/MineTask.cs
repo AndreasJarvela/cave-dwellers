@@ -13,7 +13,7 @@ public class MineTask : ITask
     private Vector3 targetPosition;
 
     private bool reachable;
-    private Vector3Int destination;
+    private Vector3 destination;
 
     public Tilemap walls;
     public Tilemap floor;
@@ -25,6 +25,7 @@ public class MineTask : ITask
 
     public MineTask(TileBase miningEffect, TileBase wallTile, TileBase floorTile, Vector3Int cellPosition)
     {
+        Debug.Log(cellPosition);
         reachable = false;
         this.walls = GameObject.Find("Walls").GetComponent<Tilemap>();
         this.toolEffects = GameObject.Find("ToolEffects").GetComponent<Tilemap>();
@@ -35,22 +36,15 @@ public class MineTask : ITask
 
         this.cellPosition = cellPosition;
         this.actionQueue = new Queue<IAction>();
-        // TODO
-        // Check activity
-        // setActive
-        // getAssigned
-        // List Actions
-        // Move -> (CheckRange) -> Mine (animation) -> (Lose Durability) -> Release -> (Update Tile) -> (Scan graph) Preferably optimized
+
         CheckBoarders();
         DisplayEffector();
-        PopulateActionQueue();
     }
 
 
 
     private void DisplayEffector()
     {
-        Debug.Log("Displaying!");
         toolEffects.SetTile(cellPosition, miningEffect);
     }
 
@@ -63,36 +57,42 @@ public class MineTask : ITask
 
         if (floor.GetTile(left) == floorTile)
         {
-            destination = left;
+            Vector3 pos = (Vector3)cellPosition + new Vector3(0, 0.5f, 0);
+            destination = pos;
             reachable = true;
         }
 
         if ( floor.GetTile(right) == floorTile )
         {
-            destination = right;
+            Vector3 pos = (Vector3)cellPosition + new Vector3(1f, 0.5f, 0);
+            destination = pos;
             reachable = true;
         }
 
         if (floor.GetTile(top) == floorTile)
         {
-            destination = top;
+            Vector3 pos = (Vector3)cellPosition + new Vector3(0.5f, 1f, 0);
+            destination = pos;
             reachable = true;
         }
 
         if (floor.GetTile(bottom) == floorTile)
         {
-            Vector3 pos = (Vector3)cellPosition + new Vector3(-0.6f, 0, 0);
-            Debug.Log(pos);
-            destination = bottom;
+            Vector3 pos = (Vector3)cellPosition + new Vector3(0.5f, 0, 0);
+            destination = pos;
             reachable = true;
         }
+
+        PopulateActionQueue();
     }
 
     private void PopulateActionQueue()
     {
-        actionQueue.Enqueue(new MoveAction(cellPosition));
-        actionQueue.Enqueue(new WaitAction(1f));
-
+        if (reachable)
+        {
+            actionQueue.Enqueue(new MoveAction(destination));
+            actionQueue.Enqueue(new WaitAction(1f));
+        }
     }
 
     public void Done()
@@ -120,18 +120,23 @@ public class MineTask : ITask
         return null;
     }
 
-    public Dweller ReleaseDweller()
-    {
-        throw new System.NotImplementedException();
-    }
-
-    public bool checkActivity()
+    public bool CheckActivity()
     {
         return reachable;
     }
 
-    public void updateActivity()
+    public void UpdateActivity()
     {
         CheckBoarders();
+    }
+
+    public Vector3Int GetTaskPosition()
+    {
+        return cellPosition;
+    }
+
+    public void CleanUp()
+    {
+        toolEffects.SetTile(cellPosition, null);
     }
 }

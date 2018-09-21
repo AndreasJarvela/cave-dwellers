@@ -27,7 +27,7 @@ public class ToolHandler : MonoBehaviour {
         toolList.Add(new DefaultTool());
         toolList.Add(new MiningTool(miningEffect, wall, floor));
 
-        setTool(ToolType.DEFAULT);
+        setTool(ToolType.MINE);
     }
 
 

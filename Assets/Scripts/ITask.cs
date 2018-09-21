@@ -5,9 +5,9 @@ using Pathfinding;
 
 public interface ITask
 {
-    Dweller ReleaseDweller();
     IAction NextAction();
-    bool checkActivity();
-    void updateActivity();
-
+    bool CheckActivity();
+    void UpdateActivity();
+    Vector3Int GetTaskPosition();
+    void CleanUp();
 }
