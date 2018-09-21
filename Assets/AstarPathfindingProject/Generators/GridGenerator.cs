@@ -1217,7 +1217,6 @@ namespace Pathfinding {
 			int index = node.NodeInGridIndex;
 			int x = index % width;
 			int z = index / width;
-
 			CalculateConnections(x, z);
 		}
 

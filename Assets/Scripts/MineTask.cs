@@ -111,7 +111,8 @@ public class MineTask : ITask
         }
         Done();
         AstarPath.active.AddWorkItem(new AstarWorkItem(ctx => {
-            var node1 = AstarPath.active.GetNearest(cellPosition).node;
+            Vector3 centerNode = cellPosition + new Vector3(0.5f, 0.5f, 0);
+            var node1 = AstarPath.active.GetNearest(centerNode).node;
             node1.Walkable = true;
             var gg = AstarPath.active.data.gridGraph;
             gg.GetNodes(node => gg.CalculateConnections((GridNodeBase)node));
