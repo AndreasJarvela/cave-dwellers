@@ -12,8 +12,11 @@ public class MineTask : ITask
 
     private Vector3 targetPosition;
 
-    private bool reachable;
+    private bool active;
     private Vector3 destination;
+
+    private int health;
+    private bool interrupted;
 
     public Tilemap walls;
     public Tilemap floor;
@@ -25,8 +28,9 @@ public class MineTask : ITask
 
     public MineTask(TileBase miningEffect, TileBase wallTile, TileBase floorTile, Vector3Int cellPosition)
     {
-        Debug.Log(cellPosition);
-        reachable = false;
+        active = false;
+        interrupted = false;
+        health = 100;
         this.walls = GameObject.Find("Walls").GetComponent<Tilemap>();
         this.toolEffects = GameObject.Find("ToolEffects").GetComponent<Tilemap>();
         this.floor = GameObject.Find("Floor").GetComponent<Tilemap>();
@@ -40,8 +44,6 @@ public class MineTask : ITask
         CheckBoarders();
         DisplayEffector();
     }
-
-
 
     private void DisplayEffector()
     {
@@ -59,28 +61,28 @@ public class MineTask : ITask
         {
             Vector3 pos = (Vector3)cellPosition + new Vector3(0, 0.5f, 0);
             destination = pos;
-            reachable = true;
+            active = true;
         }
 
         if ( floor.GetTile(right) == floorTile )
         {
             Vector3 pos = (Vector3)cellPosition + new Vector3(1f, 0.5f, 0);
             destination = pos;
-            reachable = true;
+            active = true;
         }
 
         if (floor.GetTile(top) == floorTile)
         {
             Vector3 pos = (Vector3)cellPosition + new Vector3(0.5f, 1f, 0);
             destination = pos;
-            reachable = true;
+            active = true;
         }
 
         if (floor.GetTile(bottom) == floorTile)
         {
             Vector3 pos = (Vector3)cellPosition + new Vector3(0.5f, 0, 0);
             destination = pos;
-            reachable = true;
+            active = true;
         }
 
         PopulateActionQueue();
@@ -88,11 +90,23 @@ public class MineTask : ITask
 
     private void PopulateActionQueue()
     {
-        if (reachable)
+        if (active)
         {
             actionQueue.Enqueue(new MoveAction(destination));
             actionQueue.Enqueue(new WaitAction(1f));
         }
+    }
+
+    private void UpdatePathfindingForNode()
+    {
+        AstarPath.active.AddWorkItem(new AstarWorkItem(ctx => {
+            Vector3 centerNode = cellPosition + new Vector3(0.5f, 0.5f, 0);
+            var node1 = AstarPath.active.GetNearest(centerNode).node;
+            node1.Walkable = true;
+            var gg = AstarPath.active.data.gridGraph;
+            gg.GetNodes(node => gg.CalculateConnections((GridNodeBase)node));
+            ctx.QueueFloodFill();
+        }));
     }
 
     public void Done()
@@ -102,28 +116,43 @@ public class MineTask : ITask
         toolEffects.SetTile(cellPosition, null);
     }
 
-
-    public IAction NextAction()
+    public IAction NextAction(Dweller dweller)
     {
         if(actionQueue.Count > 0)
         {
              return actionQueue.Dequeue();
         }
         Done();
-        AstarPath.active.AddWorkItem(new AstarWorkItem(ctx => {
-            Vector3 centerNode = cellPosition + new Vector3(0.5f, 0.5f, 0);
-            var node1 = AstarPath.active.GetNearest(centerNode).node;
-            node1.Walkable = true;
-            var gg = AstarPath.active.data.gridGraph;
-            gg.GetNodes(node => gg.CalculateConnections((GridNodeBase)node));
-            ctx.QueueFloodFill();
-        }));
+        UpdatePathfindingForNode();
+
         return null;
     }
 
+    public void BeginTask()
+    {
+        throw new NotImplementedException();
+    }
+
+    public bool CheckCriteria(Dweller dweller)
+    {
+        throw new NotImplementedException();
+    }
+
+    public bool TaskActive()
+    {
+        throw new NotImplementedException();
+    }
+
+    public bool TaskCompleted()
+    {
+        throw new NotImplementedException();
+    }
+
+
+    /*
     public bool CheckActivity()
     {
-        return reachable;
+        return active;
     }
 
     public void UpdateActivity()
@@ -140,4 +169,5 @@ public class MineTask : ITask
     {
         toolEffects.SetTile(cellPosition, null);
     }
+    */
 }

@@ -32,19 +32,21 @@ public class MiningTool : ITool {
 
         if (walls.GetTile(cellPosition) == wall && toolEffects.GetTile(cellPosition) != miningEffect)
         {
-            GameObject.Find("GameManager").GetComponent<WorkHandler>().AddTask(new MineTask(miningEffect, wall, floorTile, cellPosition));
+            GameObject.Find("GameManager").GetComponent<WorkHandler>().AddTask(new TestMineTask(cellPosition));
         }
 
     }
 
     public void RemoveMarker(Vector3Int cellPosition)
     {
+        /*
         if (toolEffects.GetTile(cellPosition) == miningEffect)
         {
             ITask task = GameObject.Find("GameManager").GetComponent<WorkHandler>().GetTask(cellPosition);
             GameObject.Find("GameManager").GetComponent<WorkHandler>().RemoveTask(task);
         }
 
+    */
     }
 
 

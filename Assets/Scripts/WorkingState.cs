@@ -11,16 +11,14 @@ public class WorkingState : IBehaviourState
     {
         this.assignedTask = assignedTask;
         this.dweller = dweller;
+        assignedTask.BeginTask();
     }
 
     public IAction NextAction()
     {
-        IAction nextAction = assignedTask.NextAction();
-        if (nextAction != null)
-        {
-            return nextAction;
-        }
-        return new NewStateAction(new FreeRoamState(dweller));
+
+        return assignedTask.NextAction(dweller);
+        
     }
 
 }

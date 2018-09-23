@@ -30,6 +30,7 @@ public class Dweller : MonoBehaviour, IDweller {
     public void SetState(IBehaviourState newState)
     {
         state = newState;
+        currentAction = state.NextAction();
     }
 
     public IBehaviourState GetState()
@@ -75,15 +76,13 @@ public class Dweller : MonoBehaviour, IDweller {
 
     void Update()
     {
-        if (currentAction == null)
+        if (currentAction != null)
         {
-            currentAction = state.NextAction();
-        }
-
-        currentAction.Update(this);
-        if(currentAction.Completed())
-        {
-            currentAction = state.NextAction();
+            currentAction.Update(this);
+            if (currentAction.Completed())
+            {
+                currentAction = state.NextAction();
+            }
         }
     }
 

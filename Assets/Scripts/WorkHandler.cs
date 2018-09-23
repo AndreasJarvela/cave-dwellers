@@ -19,7 +19,8 @@ public class WorkHandler : MonoBehaviour {
 
     public void AddTask(ITask newTask)
     {
-        if (newTask.CheckActivity())
+ 
+        if (newTask.TaskActive())
         {
             activeTasks.Add(newTask);
         }
@@ -27,49 +28,12 @@ public class WorkHandler : MonoBehaviour {
         {
             inactiveTasks.Add(newTask);
         }
-    }
-
-    public ITask GetTask(Vector3Int taskPosition)
-    {
-        foreach (ITask task in inactiveTasks)
-        {
-            if (taskPosition == task.GetTaskPosition())
-            {
-                return task;
-            }
-        }
-
-        return null;
-    }
-
-    public void RemoveTask(ITask taskToRemove)
-    {
-        for (int i = inactiveTasks.Count - 1; i >= 0; i--)
-        {
-            ITask task = inactiveTasks[i];
-
-            if (ReferenceEquals(taskToRemove, task))
-            {
-                task.CleanUp();
-                inactiveTasks.Remove(task);
-            }
-        }
-
-        for (int i = activeTasks.Count - 1; i >= 0; i--)
-        {
-            ITask task = activeTasks[i];
-
-            if (ReferenceEquals(taskToRemove, task))
-            {
-                task.CleanUp();
-                activeTasks.Remove(task);
-            }
-        }
+        
     }
 
     public void AddDweller(Dweller dweller)
     {
-        dwellers.Add(dweller);
+        dwellers.Insert(0, dweller);
     }
 
 
@@ -86,11 +50,12 @@ public class WorkHandler : MonoBehaviour {
             }
         }
     }
-
+    
     public bool IsInactiveTaskAvailable()
     {
         return inactiveTasks.Count > 0;
     }
+    
 
     public bool IsTaskAvailable()
     {
@@ -104,11 +69,12 @@ public class WorkHandler : MonoBehaviour {
 
     // Update is called once per frame
     void Update () {
-        
+        /*
         if (IsInactiveTaskAvailable())
         {
             UpdateInactiveTasks();
         }
+        */
         
         if (IsTaskAvailable() && IsDwellerAvailable())
         {
@@ -118,7 +84,7 @@ public class WorkHandler : MonoBehaviour {
 
     private void UpdateInactiveTasks()
     {
-
+        /*
         for (int i = inactiveTasks.Count - 1; i >= 0; i--)
         {
             ITask task = inactiveTasks[i];
@@ -129,5 +95,6 @@ public class WorkHandler : MonoBehaviour {
                 activeTasks.Add(task);
             }
         }
+        */
     }
 }
