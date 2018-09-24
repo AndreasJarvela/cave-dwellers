@@ -14,6 +14,21 @@ public class WorkHandler : MonoBehaviour {
         activeTasks.Add(newTask);
     }
 
+    public void RemoveTask(Vector3Int cellPosition)
+    {
+        /*
+        for (int i = activeTasks.Count - 1; i >= 0; --i)
+        {
+            ITask task = activeTasks[i];
+            if (ReferenceEquals(taskToRemove, task))
+            {
+                activeTasks.Clear();
+                activeTasks.RemoveAt(i);
+            }
+        }
+        */
+    }
+
     public void AddDweller(IDweller dweller)
     {
         dwellers.Insert(0, dweller);

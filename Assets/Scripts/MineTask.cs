@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Tilemaps;
@@ -7,101 +6,100 @@ using Pathfinding;
 
 public class MineTask : ITask
 {
-    private Queue<IAction> actionQueue;
-    private Vector3Int cellPosition;
+    private const float TIME_BETWEEN_PROGRESS = 0.5f;
+    private const float VALID_DISTANCE_FROM_TASK = 0.8f;
 
+    private const int REQUIRED_PROGRESS = 20;
+    private const int PROGRESS_INCREASE_RATE = 20;
+
+    private TileHandler tileHandler;
+
+    private Queue<IAction> criteraQueue;
+
+    private Vector3Int taskPosition;
+    private Vector3 centerOfTask;
     private Vector3 targetPosition;
 
-    private bool active;
-    private Vector3 destination;
+    private bool progressTask;
+    private bool taskCompleted;
+    private bool taskAssigned;
 
-    private int health;
-    private bool interrupted;
+    private int progress;
+    private Dweller dweller;
 
-    public Tilemap walls;
-    public Tilemap floor;
-    public Tilemap toolEffects;
-
-    public TileBase miningEffect;
-    public TileBase wall;
-    public TileBase floorTile;
-
-    public MineTask(TileBase miningEffect, TileBase wallTile, TileBase floorTile, Vector3Int cellPosition)
+    public MineTask(Vector3Int taskPosition)
     {
-        active = false;
-        interrupted = false;
-        health = 100;
-        this.walls = GameObject.Find("Walls").GetComponent<Tilemap>();
-        this.toolEffects = GameObject.Find("ToolEffects").GetComponent<Tilemap>();
-        this.floor = GameObject.Find("Floor").GetComponent<Tilemap>();
-        this.miningEffect = miningEffect;
-        this.wall = wallTile;
-        this.floorTile = floorTile;
-
-        this.cellPosition = cellPosition;
-        this.actionQueue = new Queue<IAction>();
-
-        CheckBoarders();
-        DisplayEffector();
+        tileHandler = GameObject.Find("GameManager").GetComponent<TileHandler>();
+        criteraQueue = new Queue<IAction>();
+        this.taskPosition = taskPosition;
+        this.centerOfTask = taskPosition + new Vector3(0.5f, 0.5f, 0);
+        tileHandler.GetToolEffectsTilemap().SetTile(taskPosition, tileHandler.GetMiningEffectsTileBase());
+        progressTask = false;
+        taskCompleted = false;
+        taskAssigned = false;
+        progress = 0;
     }
 
-    private void DisplayEffector()
+    public void BeginTask(Dweller dweller)
     {
-        toolEffects.SetTile(cellPosition, miningEffect);
+        this.dweller = dweller;
+        progressTask = false;
+        /*
+        GraphNode dwellerNode = AstarPath.active.GetNearest(dweller.transform.position, NNConstraint.Default).node;
+        GraphNode mineTaskNode = AstarPath.active.GetNearest(targetPosition, NNConstraint.Default).node;
+
+        if(PathUtilities.IsPathPossible(dwellerNode, mineTaskNode))
+        {
+
+        }
+        */
+        criteraQueue.Enqueue(new MoveAction(targetPosition));
+        criteraQueue.Enqueue(new StopAction());
     }
 
-    public void CheckBoarders()
+    public IAction GetCriteria()
     {
-        Vector3Int left = new Vector3Int(cellPosition.x - 1, cellPosition.y, cellPosition.z);
-        Vector3Int right = new Vector3Int(cellPosition.x + 1, cellPosition.y, cellPosition.z);
-        Vector3Int top = new Vector3Int(cellPosition.x, cellPosition.y + 1, cellPosition.z);
-        Vector3Int bottom = new Vector3Int(cellPosition.x, cellPosition.y - 1, cellPosition.z);
-
-        if (floor.GetTile(left) == floorTile)
+        if (criteraQueue.Count > 0)
         {
-            Vector3 pos = (Vector3)cellPosition + new Vector3(0, 0.5f, 0);
-            destination = pos;
-            active = true;
+            return criteraQueue.Dequeue();
         }
-
-        if ( floor.GetTile(right) == floorTile )
-        {
-            Vector3 pos = (Vector3)cellPosition + new Vector3(1f, 0.5f, 0);
-            destination = pos;
-            active = true;
-        }
-
-        if (floor.GetTile(top) == floorTile)
-        {
-            Vector3 pos = (Vector3)cellPosition + new Vector3(0.5f, 1f, 0);
-            destination = pos;
-            active = true;
-        }
-
-        if (floor.GetTile(bottom) == floorTile)
-        {
-            Vector3 pos = (Vector3)cellPosition + new Vector3(0.5f, 0, 0);
-            destination = pos;
-            active = true;
-        }
-
-        PopulateActionQueue();
+        return null;
     }
 
-    private void PopulateActionQueue()
+    public bool CheckCriteria()
     {
-        if (active)
+        return Vector3.Distance(centerOfTask, dweller.transform.position) < VALID_DISTANCE_FROM_TASK;
+    }
+
+    IAction ITask.Progress()
+    {
+        if (progressTask)
         {
-            actionQueue.Enqueue(new MoveAction(destination));
-            actionQueue.Enqueue(new WaitAction(1f));
+            progress += PROGRESS_INCREASE_RATE;
+            if (progress == REQUIRED_PROGRESS)
+            {
+                taskCompleted = true;
+            }
+            progressTask = false;
+            if (taskCompleted)
+            {
+                UpdatePathfindingForNode();
+                Done();
+                return new NewStateAction(new FreeRoamState(dweller));
+            }
+            return new StopAction();
+        }
+        else
+        {
+            progressTask = true;
+            return new WaitAction(TIME_BETWEEN_PROGRESS);
         }
     }
 
     private void UpdatePathfindingForNode()
     {
         AstarPath.active.AddWorkItem(new AstarWorkItem(ctx => {
-            Vector3 centerNode = cellPosition + new Vector3(0.5f, 0.5f, 0);
-            var node1 = AstarPath.active.GetNearest(centerNode).node;
+            var node1 = AstarPath.active.GetNearest(centerOfTask).node;
             node1.Walkable = true;
             var gg = AstarPath.active.data.gridGraph;
             gg.GetNodes(node => gg.CalculateConnections((GridNodeBase)node));
@@ -111,93 +109,66 @@ public class MineTask : ITask
 
     public void Done()
     {
-        walls.SetTile(cellPosition, null);
-        floor.SetTile(cellPosition, floorTile);
-        toolEffects.SetTile(cellPosition, null);
-    }
-
-    public IAction NextAction(Dweller dweller)
-    {
-        if(actionQueue.Count > 0)
-        {
-             return actionQueue.Dequeue();
-        }
-        Done();
-        UpdatePathfindingForNode();
-
-        return null;
-    }
-
-    public void BeginTask()
-    {
-        throw new NotImplementedException();
-    }
-
-    public bool CheckCriteria(Dweller dweller)
-    {
-        throw new NotImplementedException();
+        tileHandler.GetWallsTilemap().SetTile(taskPosition, null);
+        tileHandler.GetFloorTilemap().SetTile(taskPosition, tileHandler.GetFloorTileBase());
+        tileHandler.GetToolEffectsTilemap().SetTile(taskPosition, null);
     }
 
     public bool TaskActive()
     {
-        throw new NotImplementedException();
+        Vector3Int left = new Vector3Int(taskPosition.x - 1, taskPosition.y, taskPosition.z);
+        Vector3Int right = new Vector3Int(taskPosition.x + 1, taskPosition.y, taskPosition.z);
+        Vector3Int top = new Vector3Int(taskPosition.x, taskPosition.y + 1, taskPosition.z);
+        Vector3Int bottom = new Vector3Int(taskPosition.x, taskPosition.y - 1, taskPosition.z);
+
+        Tilemap floor = tileHandler.GetFloorTilemap();
+        TileBase floorTile = tileHandler.GetFloorTileBase();
+
+        bool active = false;
+
+        if (floor.GetTile(left) == floorTile)
+        {
+            Vector3 pos = (Vector3)taskPosition + new Vector3(0, 0.5f, 0);
+            targetPosition = pos;
+            active = true;
+        }
+
+        if (floor.GetTile(right) == floorTile)
+        {
+            Vector3 pos = (Vector3)taskPosition + new Vector3(1f, 0.5f, 0);
+            targetPosition = pos;
+            active = true;
+        }
+
+        if (floor.GetTile(top) == floorTile)
+        {
+            Vector3 pos = (Vector3)taskPosition + new Vector3(0.5f, 1f, 0);
+            targetPosition = pos;
+            active = true;
+        }
+
+        if (floor.GetTile(bottom) == floorTile)
+        {
+            Vector3 pos = (Vector3)taskPosition + new Vector3(0.5f, 0, 0);
+            targetPosition = pos;
+            active = true;
+        }
+
+        return active;
     }
 
     public bool TaskCompleted()
     {
-        throw new NotImplementedException();
+        return taskCompleted;
     }
 
     public bool TaskAssigned()
     {
-        throw new NotImplementedException();
+        return taskAssigned;
     }
 
     public void SetTaskAssigned(bool assigned)
     {
-        throw new NotImplementedException();
+        this.taskAssigned = assigned;
     }
-
-    public void BeginTask(Dweller dweller)
-    {
-        throw new NotImplementedException();
-    }
-
-    public bool CheckCriteria()
-    {
-        throw new NotImplementedException();
-    }
-
-    public IAction GetCriteria()
-    {
-        throw new NotImplementedException();
-    }
-
-    public IAction Progress()
-    {
-        throw new NotImplementedException();
-    }
-
-
-    /*
-    public bool CheckActivity()
-    {
-        return active;
-    }
-
-    public void UpdateActivity()
-    {
-        CheckBoarders();
-    }
-
-    public Vector3Int GetTaskPosition()
-    {
-        return cellPosition;
-    }
-
-    public void CleanUp()
-    {
-        toolEffects.SetTile(cellPosition, null);
-    }
-    */
 }

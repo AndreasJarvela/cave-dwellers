@@ -115,7 +115,7 @@ MonoBehaviour:
   version: 1
   smoothType: 0
   subdivisions: 0
-  iterations: 1
+  iterations: 5
   strength: 0.12
   uniformLength: 0
   maxSegmentLength: 2
