@@ -6,7 +6,7 @@ using Pathfinding;
 
 public class TestMineTask : ITask
 {
-    private const float TIME_BETWEEN_PROGRESS = 2f;
+    private const float TIME_BETWEEN_PROGRESS = 0.5f;
     private const float VALID_DISTANCE_FROM_TASK = 0.8f;
 
     private TileHandler tileHandler;
@@ -22,6 +22,7 @@ public class TestMineTask : ITask
     private bool taskAssigned;
 
     private int progress;
+    private Dweller dweller;
 
     public TestMineTask(Vector3Int taskPosition)
     {
@@ -36,34 +37,37 @@ public class TestMineTask : ITask
         progress = 0;
     }
 
-    public void BeginTask()
+    public void BeginTask(Dweller dweller)
     {
+        this.dweller = dweller;
         progressTask = false;
-        taskAssigned = true;
         criteraQueue.Enqueue(new MoveAction(targetPosition));
         criteraQueue.Enqueue(new StopAction());
     }
 
-    public bool CheckCriteria(Dweller dweller)
-    {
-        return Vector3.Distance(centerOfTask, dweller.transform.position) < VALID_DISTANCE_FROM_TASK;
-    }
-
-    public IAction NextAction(Dweller dweller)
+    public IAction GetCriteria()
     {
         if (criteraQueue.Count > 0)
         {
             return criteraQueue.Dequeue();
         }
+        return null;
+    }
 
-        if (!CheckCriteria(dweller))
-        {
-            return new NewStateAction(new FreeRoamState(dweller));
-        }
+    public bool CheckCriteria()
+    {
+        return Vector3.Distance(centerOfTask, dweller.transform.position) < VALID_DISTANCE_FROM_TASK;
+    }
 
+    IAction ITask.Progress()
+    {
         if (progressTask)
         {
-            Progress();
+            progress += 20;
+            if (progress == 100)
+            {
+                taskCompleted = true;
+            }
             progressTask = false;
             if (taskCompleted)
             {
@@ -77,15 +81,6 @@ public class TestMineTask : ITask
         {
             progressTask = true;
             return new WaitAction(TIME_BETWEEN_PROGRESS);
-        }
-    }
-
-    public void Progress()
-    {
-        progress += 20;
-        if (progress == 100)
-        {
-            taskCompleted = true;
         }
     }
 
@@ -151,5 +146,15 @@ public class TestMineTask : ITask
     public bool TaskCompleted()
     {
         return taskCompleted;
+    }
+
+    public bool TaskAssigned()
+    {
+        return taskAssigned;
+    }
+
+    public void SetTaskAssigned(bool assigned)
+    {
+        this.taskAssigned = assigned;
     }
 }

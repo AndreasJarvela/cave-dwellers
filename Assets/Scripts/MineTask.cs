@@ -148,6 +148,36 @@ public class MineTask : ITask
         throw new NotImplementedException();
     }
 
+    public bool TaskAssigned()
+    {
+        throw new NotImplementedException();
+    }
+
+    public void SetTaskAssigned(bool assigned)
+    {
+        throw new NotImplementedException();
+    }
+
+    public void BeginTask(Dweller dweller)
+    {
+        throw new NotImplementedException();
+    }
+
+    public bool CheckCriteria()
+    {
+        throw new NotImplementedException();
+    }
+
+    public IAction GetCriteria()
+    {
+        throw new NotImplementedException();
+    }
+
+    public IAction Progress()
+    {
+        throw new NotImplementedException();
+    }
+
 
     /*
     public bool CheckActivity()

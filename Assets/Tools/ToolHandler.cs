@@ -40,6 +40,15 @@ public class ToolHandler : MonoBehaviour {
 	// Update is called once per frame
 	void Update ()
     {
+        if (Input.GetKeyDown(KeyCode.Alpha1))
+        {
+            setTool(ToolType.DEFAULT);
+        }
+
+        if (Input.GetKeyDown(KeyCode.Alpha2))
+        {
+            setTool(ToolType.MINE);
+        }
         if (activeTool != null)
         {
             activeTool.Update();

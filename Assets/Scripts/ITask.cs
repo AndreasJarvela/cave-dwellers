@@ -10,21 +10,29 @@ public interface ITask
      * Queues the next actions that this task will return in order for starting criteria to be met.
      * </summary>
      **/
-    void BeginTask();
+    void BeginTask(Dweller dweller);
 
     /**
     * <summary>
     * Checks if dweller has met the criteria to begin task.
     * </summary>
     **/
-    bool CheckCriteria(Dweller dweller);
+    bool CheckCriteria();
+
+    /**
+    * <summary>
+    * Returns the next action required by each new dweller that gets assigned to this task
+    * I.E. Moving to task location
+    * </summary>
+    **/
+    IAction GetCriteria();
 
     /**
      * <summary>
      * Given that the task has met it's starting criteria, returns the progress action
      * </summary>
      **/
-    IAction NextAction(Dweller dweller);
+    IAction Progress();
 
     /**
      * <summary>
@@ -33,6 +41,19 @@ public interface ITask
      **/
     bool TaskActive();
 
+    /**
+     * <summary>
+     *  Returns true if task is assigned.
+     * </summary>
+     */
+    bool TaskAssigned();
+
+    /**
+     * <summary>
+     *  Set if task is assigned to a IDweller
+     * </summary>
+     */
+    void SetTaskAssigned(bool assigned);
 
     /**
     * <summary>

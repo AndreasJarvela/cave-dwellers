@@ -12,7 +12,8 @@ public class Dweller : MonoBehaviour, IDweller {
 
     private IBehaviourState state;
     private IAction currentAction;
-    internal Action<Path> pathCallback;
+    private ITask currentTask;
+   // internal Action<Path> pathCallback;
 
     void Start()
     {
@@ -24,11 +25,17 @@ public class Dweller : MonoBehaviour, IDweller {
 
     public void AssignTask(ITask task)
     {
+        currentTask = task;
+        task.SetTaskAssigned(true);
         SetState(new WorkingState(this, task));
     }
 
     public void SetState(IBehaviourState newState)
     {
+        if (state is WorkingState && !currentTask.TaskCompleted())
+        {
+            currentTask.SetTaskAssigned(false);
+        }
         state = newState;
         currentAction = state.NextAction();
     }
@@ -36,11 +43,6 @@ public class Dweller : MonoBehaviour, IDweller {
     public IBehaviourState GetState()
     {
         return state;
-    }
-
-    public void ForceAction(IAction forced)
-    {
-        currentAction = forced;
     }
 
     public int GetHealth()
