@@ -18,7 +18,7 @@ public class Initialize : MonoBehaviour {
 
     // Use this for initialization
     void Start() {
-        InitializeMap();
+        //InitializeMap();
         PopulateWorkHandlerWithCurrentDwellers();
         StartCoroutine(ScanGraph());
     }

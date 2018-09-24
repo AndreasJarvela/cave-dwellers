@@ -41,6 +41,14 @@ public class TestMineTask : ITask
     {
         this.dweller = dweller;
         progressTask = false;
+        GraphNode node1 = AstarPath.active.GetNearest(dweller.transform.position, NNConstraint.Default).node;
+        GraphNode node2 = AstarPath.active.GetNearest(targetPosition, NNConstraint.Default).node;
+
+        if (PathUtilities.IsPathPossible(node1, node2))
+        {
+            // Yay, there is a path between those two nodes
+            Debug.Log("Test");
+        }
         criteraQueue.Enqueue(new MoveAction(targetPosition));
         criteraQueue.Enqueue(new StopAction());
     }

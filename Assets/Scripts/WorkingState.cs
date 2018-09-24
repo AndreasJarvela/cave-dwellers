@@ -21,7 +21,7 @@ public class WorkingState : IBehaviourState
         {
             return action;
         }
-
+        
         if (!assignedTask.CheckCriteria())
         {
             return new NewStateAction(new FreeRoamState(dweller));
