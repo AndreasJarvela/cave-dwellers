@@ -15,7 +15,7 @@ public class ToolHandler : MonoBehaviour {
 
     public enum ToolType
     {
-        DEFAULT, MINE
+        DEFAULT, MINE, AREA
     }
 
     List<ITool> toolList;
@@ -26,8 +26,8 @@ public class ToolHandler : MonoBehaviour {
         toolList = new List<ITool>();
         toolList.Add(new DefaultTool());
         toolList.Add(new MiningTool());
-
-        setTool(ToolType.MINE);
+        toolList.Add(new AreaTool());
+        setTool(ToolType.DEFAULT);
     }
 
 
@@ -48,6 +48,11 @@ public class ToolHandler : MonoBehaviour {
         if (Input.GetKeyDown(KeyCode.Alpha2))
         {
             setTool(ToolType.MINE);
+        }
+
+        if (Input.GetKeyDown(KeyCode.Alpha3))
+        {
+            setTool(ToolType.AREA);
         }
         if (activeTool != null)
         {

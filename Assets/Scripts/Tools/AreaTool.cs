@@ -1,24 +1,27 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Tilemaps;
 
 public class AreaTool : ITool
 {
 
-    public enum Mode
+    public enum Area
     {
-        SINGLE
+        SLEEPING
     }
     public Grid grid;
+    public TileHandler th;
 
     public AreaTool()
     {
         this.grid = GameObject.Find("Grid").GetComponent<Grid>();
+        this.th = GameObject.Find("GameManager").GetComponent<TileHandler>();
     }
 
     private void PlaceMarker(Vector3Int cellPosition)
     {
-
+        th.GetAreaTilemap().SetTile(cellPosition, th.GetSleepingAreaTileBase());
     }
 
     private void RemoveMarker(Vector3Int cellPosition)
