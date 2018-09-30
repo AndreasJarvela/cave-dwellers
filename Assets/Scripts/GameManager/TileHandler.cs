@@ -28,10 +28,8 @@ public class TileHandler : MonoBehaviour {
     public TileBase GetSleepingAreaTileBase() { return sleepingAreaTile; }
 
 
-    public void ClearTiles(Vector3Int cellPosition)
+    public bool GetAreaTile(Vector3Int cellPosition)
     {
-        floor.SetTile(cellPosition, null);
-        walls.SetTile(cellPosition, null);
-        toolEffects.SetTile(cellPosition, null);
+        return area.GetTile(cellPosition) == sleepingAreaTile;
     }
 }

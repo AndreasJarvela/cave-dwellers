@@ -5,14 +5,6 @@ using UnityEngine.Tilemaps;
 
 public class ToolHandler : MonoBehaviour {
 
-    public Tilemap walls;
-    public Tilemap toolEffects;
-    public TileBase miningEffect;
-    public TileBase wall;
-    public TileBase floor;
-
-    public Grid grid;
-
     public enum ToolType
     {
         DEFAULT, MINE, AREA

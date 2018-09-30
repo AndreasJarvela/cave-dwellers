@@ -10,6 +10,9 @@ public class AreaTool : ITool
     {
         SLEEPING
     }
+
+    private Area selectedArea;
+
     public Grid grid;
     public TileHandler th;
 
@@ -17,16 +20,34 @@ public class AreaTool : ITool
     {
         this.grid = GameObject.Find("Grid").GetComponent<Grid>();
         this.th = GameObject.Find("GameManager").GetComponent<TileHandler>();
+        this.selectedArea = Area.SLEEPING;
     }
 
     private void PlaceMarker(Vector3Int cellPosition)
     {
-        th.GetAreaTilemap().SetTile(cellPosition, th.GetSleepingAreaTileBase());
+        switch (selectedArea)
+        {
+            case Area.SLEEPING:
+                if (th.floor.GetTile(cellPosition) == th.floorTile && !th.GetAreaTile(cellPosition))
+                {
+                    th.area.SetTile(cellPosition, th.sleepingAreaTile);
+                    GameObject.Find("GameManager").GetComponent<WorkHandler>().AddTask(new BedTask(cellPosition));
+                }
+                break;
+            default:
+                break;
+        }
+
     }
 
     private void RemoveMarker(Vector3Int cellPosition)
     {
        
+    }
+
+    public void SelectArea(Area area)
+    {
+        this.selectedArea = area;
     }
 
     public void Update()

@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public interface IArea {
+public class PrefabHandler : MonoBehaviour {
+
+    public GameObject bedPrefab;
 
 }

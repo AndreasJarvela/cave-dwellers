@@ -13,13 +13,16 @@ public class Dweller : MonoBehaviour, IDweller {
     private IBehaviourState state;
     private IAction currentAction;
     private ITask currentTask;
-   // internal Action<Path> pathCallback;
+
+    private Speakbubble bubble;
+    // internal Action<Path> pathCallback;
 
     void Start()
     {
         this.health = 100;
         this.energy = 100;
         this.dwellerName = "Dweller";
+        this.bubble = GetComponentInChildren<Speakbubble>();
         SetState(new FreeRoamState(this));
     }
 
@@ -73,8 +76,30 @@ public class Dweller : MonoBehaviour, IDweller {
     public void SetEnergy(int energy)
     {
         this.energy = energy;
+
     }
 
+    public void LoseEnergy(int energyToLose)
+    {
+        if (this.energy >= energyToLose)
+        {
+            SetEnergy(this.energy - energyToLose);
+        }
+        else if (this.energy < energyToLose)
+        {
+            SetEnergy(0);
+        }
+
+        if (this.energy < 20)
+        {
+            bubble.DisplaySleeping();
+        }
+
+        if (this.energy >= 20)
+        {
+            bubble.ClearBubble();
+        }
+    }
 
     void Update()
     {
@@ -84,9 +109,9 @@ public class Dweller : MonoBehaviour, IDweller {
             if (currentAction.Completed())
             {
                 currentAction = state.NextAction();
+                LoseEnergy(20);
             }
         }
     }
-
 
 }

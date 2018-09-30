@@ -1,0 +1,13 @@
+fileFormatVersion: 2
+guid: 0606b57f4f238b6488f7a057f3948988
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences:
+  - sleepingBubble: {fileID: 21300004, guid: a3ca1072839f790439cad0df254fbe5d, type: 3}
+  - foodBubble: {fileID: 21300006, guid: a3ca1072839f790439cad0df254fbe5d, type: 3}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

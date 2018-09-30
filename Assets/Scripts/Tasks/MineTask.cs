@@ -6,11 +6,11 @@ using Pathfinding;
 
 public class MineTask : ITask
 {
-    private const float TIME_BETWEEN_PROGRESS = 0.5f;
+    private const float TIME_BETWEEN_PROGRESS = 1f;
     private const float VALID_DISTANCE_FROM_TASK = 0.8f;
 
     private const int REQUIRED_PROGRESS = 20;
-    private const int PROGRESS_INCREASE_RATE = 20;
+    private const int PROGRESS_INCREASE_RATE = 5;
 
     private TileHandler tileHandler;
 

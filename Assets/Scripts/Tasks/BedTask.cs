@@ -4,43 +4,101 @@ using UnityEngine;
 
 public class BedTask : ITask
 {
+
+    private const float VALID_DISTANCE_FROM_TASK = 0.1f;
+
+    private Vector3Int taskPosition;
+    private Vector3 centerOfTask;
+
+    private Queue<IAction> criteraQueue;
+
+    private bool taskAssigned;
+    private bool taskCompleted;
+    private Dweller dweller;
+
+    private PrefabHandler ph;
+
+    public BedTask(Vector3Int cellPosition)
+    {
+        this.ph = GameObject.Find("GameManager").GetComponent<PrefabHandler>();
+        this.taskPosition = cellPosition;
+        this.centerOfTask = cellPosition + new Vector3(0.5f, 0.5f, 0);
+        this.taskCompleted = false;
+        this.taskAssigned = false;
+        criteraQueue = new Queue<IAction>();
+    }
+
     public void BeginTask(Dweller dweller)
     {
-        throw new System.NotImplementedException();
+        this.dweller = dweller;
+        criteraQueue.Enqueue(new MoveAction(centerOfTask));
+        criteraQueue.Enqueue(new StopAction());
     }
 
     public bool CheckCriteria()
     {
-        throw new System.NotImplementedException();
+        return Vector3.Distance(centerOfTask, dweller.transform.position) < VALID_DISTANCE_FROM_TASK;
     }
 
     public IAction GetCriteria()
     {
-        throw new System.NotImplementedException();
+        if (criteraQueue.Count > 0)
+        {
+            return criteraQueue.Dequeue();
+        }
+        return null;
     }
+
+    private bool progress = false;
+    private bool hasConstructed = false;
+
+    private int progressVal = 0;
 
     public IAction Progress()
     {
-        throw new System.NotImplementedException();
-    }
-
-    public void SetTaskAssigned(bool assigned)
-    {
-        throw new System.NotImplementedException();
+        if (!progress)
+        {
+            progress = true;
+            return new WaitAction(1f);
+        }
+        else
+        {
+            progress = false;
+            if (progressVal < 2)
+            {
+                progressVal += 1;
+            }
+            if (progressVal == 2)
+            {
+                if (!hasConstructed)
+                {
+                    hasConstructed = true;
+                    return new ConstructAction(ph.bedPrefab, centerOfTask);
+                }
+                taskCompleted = true;
+                return new NewStateAction(new FreeRoamState(dweller));
+            }
+            return new StopAction();
+        }
     }
 
     public bool TaskActive()
     {
-        throw new System.NotImplementedException();
+        return true;
     }
 
     public bool TaskAssigned()
     {
-        throw new System.NotImplementedException();
+        return taskAssigned;
+    }
+
+    public void SetTaskAssigned(bool assigned)
+    {
+        this.taskAssigned = assigned;
     }
 
     public bool TaskCompleted()
     {
-        throw new System.NotImplementedException();
+        return taskCompleted;
     }
 }

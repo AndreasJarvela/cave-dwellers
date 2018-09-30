@@ -17,8 +17,8 @@ public class MiningTool : ITool
     
     public void PlaceMarker(Vector3Int cellPosition)
     {
-        ToolHandler th = GameObject.Find("GameManager").GetComponent<ToolHandler>();
-        if (th.walls.GetTile(cellPosition) == th.wall && th.toolEffects.GetTile(cellPosition) != th.miningEffect)
+        TileHandler th = GameObject.Find("GameManager").GetComponent<TileHandler>();
+        if (th.walls.GetTile(cellPosition) == th.wallTile && th.toolEffects.GetTile(cellPosition) != th.miningEffect)
         {
             GameObject.Find("GameManager").GetComponent<WorkHandler>().AddTask(new MineTask(cellPosition));
         }

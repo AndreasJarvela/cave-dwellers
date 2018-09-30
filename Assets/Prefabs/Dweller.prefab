@@ -20,8 +20,9 @@ GameObject:
   m_Component:
   - component: {fileID: 4943219237056042}
   - component: {fileID: 212430416075811410}
+  - component: {fileID: 114524011130551574}
   m_Layer: 0
-  m_Name: Selected
+  m_Name: Speakbubble
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -56,7 +57,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1886715677188646}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 1.47, y: -0.047, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4943219237056042}
@@ -70,7 +71,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1847019453151614}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.033, y: 0, z: 0}
+  m_LocalPosition: {x: -0.03, y: 0.5, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4689095860486550}
@@ -144,6 +145,19 @@ MonoBehaviour:
   interpolatePathSwitches: 0
   switchPathInterpolationSpeed: 5
   targetCompatibility: {fileID: 0}
+--- !u!114 &114524011130551574
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1847019453151614}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0606b57f4f238b6488f7a057f3948988, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sleepingBubble: {fileID: 21300004, guid: a3ca1072839f790439cad0df254fbe5d, type: 3}
+  foodBubble: {fileID: 21300006, guid: a3ca1072839f790439cad0df254fbe5d, type: 3}
 --- !u!114 &114555649604737062
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -272,10 +286,10 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: -209873887
+  m_SortingLayer: 4
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300004, guid: 35efc822bd1967b46891eb6e6d47dac8, type: 3}
+  m_Sprite: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -283,6 +297,6 @@ SpriteRenderer:
   m_Size: {x: 1, y: 1}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0

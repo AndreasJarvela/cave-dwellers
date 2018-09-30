@@ -27,7 +27,6 @@ public class WorkingState : IBehaviourState
         {
             return new NewStateAction(new FreeRoamState(dweller));
         }
-
         return assignedTask.Progress();
         
     }

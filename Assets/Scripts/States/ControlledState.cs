@@ -19,7 +19,6 @@ public class ControlledState : IBehaviourState
         actions.Enqueue(newAction);
     }
 
-
     public IAction NextAction()
     {
         if (actions.Count > 0)

@@ -9,15 +9,12 @@ public class Initialize : MonoBehaviour {
     public const int width = 150;
     public const int height = 150;
 
-    public Tilemap walls;
-    public Tilemap floor;
-
-    public TileBase wallTile;
-    public TileBase floorTile;
+    private TileHandler th;
 
 
     // Use this for initialization
     void Start() {
+        th = GetComponent<TileHandler>();
         InitializeMap();
         PopulateWorkHandlerWithCurrentDwellers();
         StartCoroutine(ScanGraph());
@@ -46,7 +43,7 @@ public class Initialize : MonoBehaviour {
         {
             for (int y = -map.GetUpperBound(1) / 2; y < map.GetUpperBound(1) / 2; y++)
             {
-                walls.SetTile(new Vector3Int(x, y, 0), wallTile);
+                th.walls.SetTile(new Vector3Int(x, y, 0), th.wallTile);
             }
         }
 
@@ -54,8 +51,8 @@ public class Initialize : MonoBehaviour {
         {
             for (int j = -1; j < 2; j++)
             {
-                floor.SetTile(new Vector3Int(i, j, 0), floorTile);
-                walls.SetTile(new Vector3Int(i, j, 0), null);
+                th.floor.SetTile(new Vector3Int(i, j, 0), th.floorTile);
+                th.walls.SetTile(new Vector3Int(i, j, 0), null);
             }
         }
     }
