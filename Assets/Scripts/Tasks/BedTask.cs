@@ -101,4 +101,9 @@ public class BedTask : ITask
     {
         return taskCompleted;
     }
+
+    public int GetEnergyCost()
+    {
+        return 0;
+    }
 }

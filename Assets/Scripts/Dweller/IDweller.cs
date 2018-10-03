@@ -17,5 +17,7 @@ public interface IDweller {
     IBehaviourState GetState();
 
     void AssignTask(ITask task);
+
+    Speakbubble GetSpeakbubble();
     
 }

@@ -27,6 +27,7 @@ public class ConstructAction : IAction
     public void Update(Dweller dweller)
     {
         GameObject bed = GameObject.Instantiate(structure, position, Quaternion.identity);
+        bed.transform.parent = GameObject.Find("Structures").transform;
         if (bed != null)
         {
             completed = true;

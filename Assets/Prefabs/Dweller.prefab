@@ -140,7 +140,7 @@ MonoBehaviour:
   canMove: 1
   speed: 2
   enableRotation: 0
-  rotationIn2D: 0
+  rotationIn2D: 1
   rotationSpeed: 10
   interpolatePathSwitches: 0
   switchPathInterpolationSpeed: 5

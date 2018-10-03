@@ -9,8 +9,10 @@ public class MineTask : ITask
     private const float TIME_BETWEEN_PROGRESS = 1f;
     private const float VALID_DISTANCE_FROM_TASK = 0.8f;
 
-    private const int REQUIRED_PROGRESS = 20;
-    private const int PROGRESS_INCREASE_RATE = 5;
+    private const int REQUIRED_PROGRESS = 30;
+    private const int PROGRESS_INCREASE_RATE = 10;
+
+    private const int ENERGY_COST = 10;
 
     private TileHandler tileHandler;
 
@@ -73,6 +75,8 @@ public class MineTask : ITask
 
     IAction ITask.Progress()
     {
+        dweller.LoseEnergy(GetEnergyCost());
+
         if (progressTask)
         {
             progress += PROGRESS_INCREASE_RATE;
@@ -81,11 +85,13 @@ public class MineTask : ITask
                 taskCompleted = true;
             }
             progressTask = false;
+            
             if (taskCompleted)
             {
                 UpdatePathfindingForNode();
                 Done();
-                return new NewStateAction(new FreeRoamState(dweller));
+                
+                return null;
             }
             return new StopAction();
         }
@@ -170,5 +176,10 @@ public class MineTask : ITask
     public void SetTaskAssigned(bool assigned)
     {
         this.taskAssigned = assigned;
+    }
+
+    public int GetEnergyCost()
+    {
+        return ENERGY_COST;
     }
 }

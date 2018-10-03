@@ -18,6 +18,12 @@ public class Speakbubble : MonoBehaviour {
         bubble.sprite = sleepingBubble;
     }
 
+    public void DisplayEating()
+    {
+        bubble.sprite = foodBubble;
+
+    }
+
 
     public void ClearBubble()
     {

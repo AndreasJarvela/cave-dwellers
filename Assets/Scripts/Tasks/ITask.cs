@@ -63,4 +63,11 @@ public interface ITask
     bool TaskCompleted();
 
 
+    /**
+  * <summary>
+  * Returns how much energy that is required for a single action from this task to be done.
+  * </summary>
+  **/
+    int GetEnergyCost();
+
 }

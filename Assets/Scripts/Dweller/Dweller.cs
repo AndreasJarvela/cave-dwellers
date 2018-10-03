@@ -6,6 +6,10 @@ using System;
 
 public class Dweller : MonoBehaviour, IDweller {
 
+    private const int STARTING_HEALTH = 100;
+    private const int STARTING_ENERGY = 100;
+    private const int SLEEP_THRESHOLD = 0;
+
     private int health;
     private int energy;
     private string dwellerName;
@@ -19,8 +23,8 @@ public class Dweller : MonoBehaviour, IDweller {
 
     void Start()
     {
-        this.health = 100;
-        this.energy = 100;
+        this.health = STARTING_HEALTH;
+        this.energy = STARTING_ENERGY;
         this.dwellerName = "Dweller";
         this.bubble = GetComponentInChildren<Speakbubble>();
         SetState(new FreeRoamState(this));
@@ -89,29 +93,34 @@ public class Dweller : MonoBehaviour, IDweller {
         {
             SetEnergy(0);
         }
-
-        if (this.energy < 20)
+        
+        if (GetEnergy() <= SLEEP_THRESHOLD && !(state is SleepyState))
         {
-            bubble.DisplaySleeping();
+            SetState(new SleepyState(this));
         }
-
-        if (this.energy >= 20)
-        {
-            bubble.ClearBubble();
-        }
+        
     }
 
     void Update()
     {
+
         if (currentAction != null)
         {
             currentAction.Update(this);
             if (currentAction.Completed())
             {
                 currentAction = state.NextAction();
-                LoseEnergy(20);
+                if (currentAction == null)
+                {
+                    SetState(new FreeRoamState(this));
+                }
             }
         }
+        GetComponent<SpriteRenderer>().sortingOrder = -(int)(transform.position.y * 1000f);
     }
 
+    public Speakbubble GetSpeakbubble()
+    {
+        return bubble;
+    }
 }

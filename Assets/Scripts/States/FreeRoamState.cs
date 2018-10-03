@@ -33,8 +33,7 @@ public class FreeRoamState : IBehaviourState {
         else
         {
             justMoved = false;
-            return new WaitAction(Random.Range(1f, 3f));
-        }
+            return new WaitAction(Random.Range(1f, 3f));        }
     }
 
 }
