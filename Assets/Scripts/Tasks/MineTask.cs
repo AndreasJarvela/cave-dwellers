@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.Tilemaps;
 using Pathfinding;
 
-public class MineTask : ITask
+class MineTask : Task
 {
     private const float TIME_BETWEEN_PROGRESS = 1f;
     private const float VALID_DISTANCE_FROM_TASK = 0.8f;
@@ -17,19 +17,15 @@ public class MineTask : ITask
     private TileHandler tileHandler;
 
     private Queue<IAction> criteraQueue;
-
-    private Vector3Int taskPosition;
     private Vector3 centerOfTask;
     private Vector3 targetPosition;
 
     private bool progressTask;
-    private bool taskCompleted;
-    private bool taskAssigned;
 
     private int progress;
     private Dweller dweller;
 
-    public MineTask(Vector3Int taskPosition)
+    public MineTask(Vector3Int taskPosition) : base(taskPosition)
     {
         tileHandler = GameObject.Find("GameManager").GetComponent<TileHandler>();
         criteraQueue = new Queue<IAction>();
@@ -42,7 +38,7 @@ public class MineTask : ITask
         progress = 0;
     }
 
-    public void BeginTask(Dweller dweller)
+    public override void BeginTask(Dweller dweller)
     {
         this.dweller = dweller;
         progressTask = false;
@@ -59,7 +55,7 @@ public class MineTask : ITask
         criteraQueue.Enqueue(new StopAction());
     }
 
-    public IAction GetCriteria()
+    public override IAction GetCriteria()
     {
         if (criteraQueue.Count > 0)
         {
@@ -68,12 +64,12 @@ public class MineTask : ITask
         return null;
     }
 
-    public bool CheckCriteria()
+    public override bool CheckCriteria()
     {
         return Vector3.Distance(centerOfTask, dweller.transform.position) < VALID_DISTANCE_FROM_TASK;
     }
 
-    IAction ITask.Progress()
+    public override IAction Progress()
     {
         dweller.LoseEnergy(GetEnergyCost());
 
@@ -120,7 +116,7 @@ public class MineTask : ITask
         tileHandler.GetToolEffectsTilemap().SetTile(taskPosition, null);
     }
 
-    public bool TaskActive()
+    public override bool TaskActive()
     {
         Vector3Int left = new Vector3Int(taskPosition.x - 1, taskPosition.y, taskPosition.z);
         Vector3Int right = new Vector3Int(taskPosition.x + 1, taskPosition.y, taskPosition.z);
@@ -163,22 +159,7 @@ public class MineTask : ITask
         return active;
     }
 
-    public bool TaskCompleted()
-    {
-        return taskCompleted;
-    }
-
-    public bool TaskAssigned()
-    {
-        return taskAssigned;
-    }
-
-    public void SetTaskAssigned(bool assigned)
-    {
-        this.taskAssigned = assigned;
-    }
-
-    public int GetEnergyCost()
+    public override int GetEnergyCost()
     {
         return ENERGY_COST;
     }

@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-abstract class Task : ITask
+public abstract class Task : ITask
 {
 
     protected bool taskAssigned;
