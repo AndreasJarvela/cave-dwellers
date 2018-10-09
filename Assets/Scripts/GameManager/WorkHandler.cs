@@ -44,7 +44,7 @@ public class WorkHandler : MonoBehaviour {
            ITask task = GetAvailableTask();
             if (task != null)
             {
-                dweller.AssignTask(task);
+                dweller.SetState(new WorkingState((Dweller)dweller, task));
             }
         }
        

@@ -12,9 +12,9 @@ public class MoveAction : IAction
 
     public MoveAction(Vector3 targetPosition)
     {
-    
         this.targetPosition = targetPosition;
         this.startAction = true;
+        this.completed = false;
     }
 
     public bool Completed()

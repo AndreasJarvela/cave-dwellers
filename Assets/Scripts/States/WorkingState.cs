@@ -10,14 +10,22 @@ public class WorkingState : IBehaviourState
 
     public WorkingState(Dweller dweller, ITask assignedTask)
     {
+        dweller.SetCurrentTask(assignedTask);
+        assignedTask.SetTaskAssigned(true);
         this.assignedTask = assignedTask;
         this.dweller = dweller;
         assignedTask.BeginTask(dweller);
     }
 
+    public void OnEnter()
+    {
+
+    }
+
     public IAction NextAction()
     {
         IAction action = assignedTask.GetCriteria();
+
         if (action != null)
         {
             return action;
@@ -30,5 +38,7 @@ public class WorkingState : IBehaviourState
         return assignedTask.Progress();
         
     }
-
+    public void OnExit()
+    {
+    }
 }

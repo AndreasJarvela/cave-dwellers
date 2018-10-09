@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public interface IBehaviourState {
-
+    void OnEnter();
     IAction NextAction();
+    void OnExit();
 }

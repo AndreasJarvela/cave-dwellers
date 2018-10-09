@@ -7,8 +7,8 @@ using System;
 public class Dweller : MonoBehaviour, IDweller {
 
     private const int STARTING_HEALTH = 100;
-    private const int STARTING_ENERGY = 100;
-    private const int SLEEP_THRESHOLD = 0;
+    private const int MAX_ENERGY = 100;
+    private const int SLEEP_THRESHOLD = 1;
 
     private int health;
     private int energy;
@@ -24,17 +24,15 @@ public class Dweller : MonoBehaviour, IDweller {
     void Start()
     {
         this.health = STARTING_HEALTH;
-        this.energy = STARTING_ENERGY;
+        this.energy = MAX_ENERGY;
         this.dwellerName = "Dweller";
         this.bubble = GetComponentInChildren<Speakbubble>();
         SetState(new FreeRoamState(this));
     }
 
-    public void AssignTask(ITask task)
+    public void SetCurrentTask(ITask task)
     {
         currentTask = task;
-        task.SetTaskAssigned(true);
-        SetState(new WorkingState(this, task));
     }
 
     public void SetState(IBehaviourState newState)
@@ -43,8 +41,11 @@ public class Dweller : MonoBehaviour, IDweller {
         {
             currentTask.SetTaskAssigned(false);
         }
+        if (state != null)
+            state.OnExit();
         state = newState;
-        currentAction = state.NextAction();
+        state.OnEnter();
+        CancelCurrentAction();
     }
 
     public IBehaviourState GetState()
@@ -79,42 +80,66 @@ public class Dweller : MonoBehaviour, IDweller {
 
     public void SetEnergy(int energy)
     {
+
         this.energy = energy;
 
     }
 
+    public int GetMaxEnergy()
+    {
+        return MAX_ENERGY;
+    }
+
+    public void GainEnergy(int energyToGain)
+    {
+        if (GetEnergy() + energyToGain >= MAX_ENERGY)
+        {
+            SetEnergy(MAX_ENERGY);
+        }
+        else
+        {
+            SetEnergy(GetEnergy() + energyToGain);
+        }
+    }
+
     public void LoseEnergy(int energyToLose)
     {
-        if (this.energy >= energyToLose)
+        if (GetEnergy() >= energyToLose)
         {
-            SetEnergy(this.energy - energyToLose);
+            SetEnergy(GetEnergy() - energyToLose);
         }
-        else if (this.energy < energyToLose)
+        else if (GetEnergy() < energyToLose)
         {
             SetEnergy(0);
         }
+            
+
         
-        if (GetEnergy() <= SLEEP_THRESHOLD && !(state is SleepyState))
-        {
-            SetState(new SleepyState(this));
-        }
-        
+    }
+
+    public void CancelCurrentAction()
+    {
+        currentAction = null;
     }
 
     void Update()
     {
+        if (currentAction == null  || currentAction.Completed())
+        {
+            if (GetEnergy() <= SLEEP_THRESHOLD && !(state is SleepyState))
+            {
+                SetState(new SleepyState(this));
+            }
+            currentAction = state.NextAction();
+            if (currentAction == null)
+            {
+                SetState(new FreeRoamState(this));
+            }
+        }
 
         if (currentAction != null)
         {
             currentAction.Update(this);
-            if (currentAction.Completed())
-            {
-                currentAction = state.NextAction();
-                if (currentAction == null)
-                {
-                    SetState(new FreeRoamState(this));
-                }
-            }
         }
         GetComponent<SpriteRenderer>().sortingOrder = -(int)(transform.position.y * 1000f);
     }

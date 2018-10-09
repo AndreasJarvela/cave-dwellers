@@ -23,6 +23,11 @@ public class FreeRoamState : IBehaviourState {
 
     private bool justMoved = false;
 
+    public void OnEnter()
+    {
+
+    }
+
     public IAction NextAction()
     {
         if (!justMoved)
@@ -36,4 +41,8 @@ public class FreeRoamState : IBehaviourState {
             return new WaitAction(Random.Range(1f, 3f));        }
     }
 
+    public void OnExit()
+    {
+
+    }
 }

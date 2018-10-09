@@ -7,7 +7,7 @@ public class BedTask : ITask
 
     private const float VALID_DISTANCE_FROM_TASK = 0.1f;
 
-    private Vector3 taskPosition;
+    private Vector3Int taskPosition;
     private Vector3 centerOfTask;
 
     private Queue<IAction> criteraQueue;
@@ -21,7 +21,7 @@ public class BedTask : ITask
     public BedTask(Vector3Int cellPosition)
     {
         this.ph = GameObject.Find("GameManager").GetComponent<PrefabHandler>();
-        this.taskPosition = cellPosition + new Vector3(0.5f, 0, 0);
+        this.taskPosition = cellPosition;
         this.centerOfTask = cellPosition + new Vector3(0.5f, 0.5f, 0);
         this.taskCompleted = false;
         this.taskAssigned = false;

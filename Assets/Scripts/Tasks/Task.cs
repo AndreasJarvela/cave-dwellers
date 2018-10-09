@@ -12,6 +12,8 @@ public abstract class Task : ITask
     public Task(Vector3Int taskPosition)
     {
         this.taskPosition = taskPosition;
+        taskCompleted = false;
+        taskAssigned = false;
     }
 
     public abstract void BeginTask(Dweller dweller);

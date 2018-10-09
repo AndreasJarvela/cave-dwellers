@@ -19,6 +19,11 @@ public class ControlledState : IBehaviourState
         actions.Enqueue(newAction);
     }
 
+    public void OnEnter()
+    {
+
+    }
+
     public IAction NextAction()
     {
         if (actions.Count > 0)
@@ -27,5 +32,10 @@ public class ControlledState : IBehaviourState
         }
 
         return new StopAction();
+    }
+
+    public void OnExit()
+    {
+
     }
 }

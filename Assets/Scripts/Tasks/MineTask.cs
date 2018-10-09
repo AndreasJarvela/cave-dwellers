@@ -33,8 +33,6 @@ class MineTask : Task
         this.centerOfTask = taskPosition + new Vector3(0.5f, 0.5f, 0);
         tileHandler.GetToolEffectsTilemap().SetTile(taskPosition, tileHandler.GetMiningEffectsTileBase());
         progressTask = false;
-        taskCompleted = false;
-        taskAssigned = false;
         progress = 0;
     }
 

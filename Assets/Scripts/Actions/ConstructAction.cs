@@ -5,13 +5,13 @@ using UnityEngine;
 public class ConstructAction : IAction 
 {
 
-    private Vector3 position;
+    private Vector3Int position;
 
     private bool completed;
 
     private GameObject structure;
 
-    public ConstructAction(GameObject structure, Vector3 position)
+    public ConstructAction(GameObject structure, Vector3Int position)
     {
         completed = false;
         this.structure = structure;
@@ -26,7 +26,9 @@ public class ConstructAction : IAction
 
     public void Update(Dweller dweller)
     {
-        GameObject bed = GameObject.Instantiate(structure, position, Quaternion.identity);
+        
+        GameObject bed = GameObject.Instantiate(structure, position + new Vector3(0.5f, 0f ,0f), Quaternion.identity);
+        bed.GetComponent<Bed>().SetPosition(position);
         bed.transform.parent = GameObject.Find("Structures").transform;
         if (bed != null)
         {
