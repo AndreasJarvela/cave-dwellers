@@ -6,8 +6,9 @@ using UnityEngine.UI;
 public class Minimap : MonoBehaviour {
 
     // Use this for initialization
-    Texture2D texture = new Texture2D(150, 150);
+    Texture2D texture;
     void Start () {
+        texture = new Texture2D(150, 150);
         GetComponent<Image>().material.mainTexture = texture;
     }
 
