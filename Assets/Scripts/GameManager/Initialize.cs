@@ -11,6 +11,8 @@ public class Initialize : MonoBehaviour {
 
     private TileHandler th;
 
+    private Minimap minimap;
+
 
     // Use this for initialization
     void Start() {
