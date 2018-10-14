@@ -7,9 +7,17 @@ public class Minimap : MonoBehaviour {
 
     // Use this for initialization
     Texture2D texture;
-    void Start () {
-        texture = new Texture2D(150, 150);
+
+    void Awake()
+    {
+        texture = new Texture2D(75, 75);
+        texture.SetPixel(0, 0, Color.black);
+        texture.Apply();
         GetComponent<Image>().material.mainTexture = texture;
+    }
+
+    void Start () {
+ 
     }
 
     public void DrawPixel(int x, int y, Color c)

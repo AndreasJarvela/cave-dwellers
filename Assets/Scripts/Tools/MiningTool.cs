@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Tilemaps;
+using UnityEngine.EventSystems;
 
 public class MiningTool : ITool
 
@@ -9,6 +10,8 @@ public class MiningTool : ITool
 
 
     public Grid grid;
+
+    
 
     public MiningTool()
     {
@@ -32,14 +35,14 @@ public class MiningTool : ITool
 
     void ITool.Update()
     {
-        if (Input.GetMouseButton(0))
+        if (Input.GetMouseButton(0) && !EventSystem.current.IsPointerOverGameObject())
         {
             Vector3 pos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
             Vector3Int cellPosition = grid.WorldToCell(pos);
             PlaceMarker(cellPosition);
         }
 
-        if (Input.GetMouseButton(1))
+        if (Input.GetMouseButton(1) && !EventSystem.current.IsPointerOverGameObject())
         {
             Vector3 pos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
             Vector3Int cellPosition = grid.WorldToCell(pos);

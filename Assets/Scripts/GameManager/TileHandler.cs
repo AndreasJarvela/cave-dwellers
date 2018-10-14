@@ -15,6 +15,8 @@ public class TileHandler : MonoBehaviour {
     public TileBase wallTile;
     public TileBase floorTile;
     public TileBase sleepingAreaTile;
+    public TileBase foodAreaTile;
+
 
     public Tilemap GetToolEffectsTilemap() { return toolEffects; }
     public Tilemap GetWallsTilemap() { return walls; }
@@ -28,8 +30,8 @@ public class TileHandler : MonoBehaviour {
     public TileBase GetSleepingAreaTileBase() { return sleepingAreaTile; }
 
 
-    public bool GetAreaTile(Vector3Int cellPosition)
+    public bool HasAreaTile(Vector3Int cellPosition)
     {
-        return area.GetTile(cellPosition) == sleepingAreaTile;
+        return area.GetTile(cellPosition) == sleepingAreaTile || area.GetTile(cellPosition) == foodAreaTile;
     }
 }

@@ -6,6 +6,8 @@ TagManager:
   tags:
   - Dweller
   - Bed
+  - ResourceText
+  - UIInformation
   layers:
   - Default
   - TransparentFX

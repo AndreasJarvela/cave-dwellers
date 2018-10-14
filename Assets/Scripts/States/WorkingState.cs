@@ -7,6 +7,7 @@ public class WorkingState : IBehaviourState
 {
     private ITask assignedTask;
     private Dweller dweller;
+    private ResourceManager rm;
 
     public WorkingState(Dweller dweller, ITask assignedTask)
     {
@@ -15,6 +16,7 @@ public class WorkingState : IBehaviourState
         this.assignedTask = assignedTask;
         this.dweller = dweller;
         assignedTask.BeginTask(dweller);
+        this.rm = GameObject.Find("GameManager").GetComponent<ResourceManager>();
     }
 
     public void OnEnter()

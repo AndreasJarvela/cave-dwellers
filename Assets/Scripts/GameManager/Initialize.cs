@@ -17,6 +17,7 @@ public class Initialize : MonoBehaviour {
     // Use this for initialization
     void Start() {
         th = GetComponent<TileHandler>();
+        //minimap = GameObject.Find("UI").GetComponentInChildren<Minimap>();
         InitializeMap();
         PopulateWorkHandlerWithCurrentDwellers();
         StartCoroutine(ScanGraph());
@@ -57,6 +58,7 @@ public class Initialize : MonoBehaviour {
                 th.walls.SetTile(new Vector3Int(i, j, 0), null);
             }
         }
+        
     }
 
 

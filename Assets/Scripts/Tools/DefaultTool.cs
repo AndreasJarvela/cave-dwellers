@@ -17,47 +17,24 @@ public class DefaultTool : ITool {
         if (Input.GetMouseButtonDown(0))
         {
 
-            if (Input.GetMouseButtonDown(0))
+            Vector3 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+            Vector2 mousePos2D = new Vector2(mousePos.x, mousePos.y);
+
+            RaycastHit2D hit = Physics2D.Raycast(mousePos2D, Vector2.zero);
+
+            if (hit.collider != null)
             {
-                Vector3 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-                Vector2 mousePos2D = new Vector2(mousePos.x, mousePos.y);
-
-                RaycastHit2D hit = Physics2D.Raycast(mousePos2D, Vector2.zero);
-
-                if (hit.collider != null)
+                if (hit.collider.gameObject.tag == "Dweller")
                 {
-                    if (hit.collider.gameObject.tag == "Dweller")
+                    if (selected != null && !ReferenceEquals(hit.collider.gameObject, selected.gameObject))
                     {
-                        if (selected != null && !ReferenceEquals(hit.collider.gameObject, selected.gameObject))
-                        {
-                            selected.SetState(new FreeRoamState(selected));
-                        }
-                        selected = hit.collider.gameObject.GetComponent<Dweller>();
+                        selected.SetState(new FreeRoamState(selected));
                     }
-                }
-
-
-            }
-
-
-            /*
-            foreach (GameObject dweller in GameObject.FindGameObjectsWithTag("Dweller"))
-            {
-
-
-
-                Vector3 pos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-                BoxCollider2D collider = dweller.GetComponent<BoxCollider2D>();
-                Vector2 test = new Vector2();
-                test.x = pos.x;
-                test.y = pos.y;
-                if (collider.bounds.Contains(test))
-                {
-                    selected = dweller.GetComponent<Dweller>();
-                    Debug.Log("Works");
+                    selected = hit.collider.gameObject.GetComponent<Dweller>();
+                    GameObject.FindGameObjectWithTag("UIInformation").GetComponent<UIInformationHandler>().ListenToDweller(selected);
                 }
             }
-            */
+
         }
 
         if (Input.GetMouseButtonDown(1) && selected != null)

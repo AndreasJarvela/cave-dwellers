@@ -12,7 +12,9 @@ class MineTask : Task
     private const int REQUIRED_PROGRESS = 30;
     private const int PROGRESS_INCREASE_RATE = 10;
 
-    private const int ENERGY_COST = 10;
+    private const int ENERGY_COST = 5;
+
+    private const int RESOURCE_GAINED = 1;
 
     private TileHandler tileHandler;
 
@@ -25,15 +27,19 @@ class MineTask : Task
     private int progress;
     private Dweller dweller;
 
+    private ResourceManager rm;
+
     public MineTask(Vector3Int taskPosition) : base(taskPosition)
     {
         tileHandler = GameObject.Find("GameManager").GetComponent<TileHandler>();
+        rm = GameObject.Find("GameManager").GetComponent<ResourceManager>();
         criteraQueue = new Queue<IAction>();
         this.taskPosition = taskPosition;
         this.centerOfTask = taskPosition + new Vector3(0.5f, 0.5f, 0);
         tileHandler.GetToolEffectsTilemap().SetTile(taskPosition, tileHandler.GetMiningEffectsTileBase());
         progressTask = false;
         progress = 0;
+        
     }
 
     public override void BeginTask(Dweller dweller)
@@ -73,6 +79,8 @@ class MineTask : Task
 
         if (progressTask)
         {
+            rm.IncreaseResource(ResourceManager.ResourceType.STONE, RESOURCE_GAINED);
+            dweller.LoseHealth(10);
             progress += PROGRESS_INCREASE_RATE;
             if (progress == REQUIRED_PROGRESS)
             {

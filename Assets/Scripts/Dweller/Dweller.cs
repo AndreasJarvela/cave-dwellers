@@ -8,10 +8,12 @@ public class Dweller : MonoBehaviour, IDweller {
 
     private const int STARTING_HEALTH = 100;
     private const int MAX_ENERGY = 100;
+    private const int MAX_HUNGER = 100;
     private const int SLEEP_THRESHOLD = 1;
 
     private int health;
     private int energy;
+    private int hunger;
     private string dwellerName;
 
     private IBehaviourState state;
@@ -25,6 +27,7 @@ public class Dweller : MonoBehaviour, IDweller {
     {
         this.health = STARTING_HEALTH;
         this.energy = MAX_ENERGY;
+        this.hunger = MAX_HUNGER;
         this.dwellerName = "Dweller";
         this.bubble = GetComponentInChildren<Speakbubble>();
         SetState(new FreeRoamState(this));
@@ -68,9 +71,50 @@ public class Dweller : MonoBehaviour, IDweller {
         return energy;
     }
 
+    public float GetEnergyNormalised()
+    {
+        return (float)energy / (float)MAX_ENERGY;
+    }
+
+    public float GetHungerNormalised()
+    {
+        return (float)hunger / (float)MAX_HUNGER;
+    }
+
+    public float GetHealthNormalised()
+    {
+        return (float)health / (float)STARTING_HEALTH;
+    }
+
     public void SetHealth(int health)
     {
         this.health = health;
+    }
+
+    public void GainHealth(int healthToGain)
+    {
+        if (GetHealth() + healthToGain >= STARTING_HEALTH)
+        {
+            SetHealth(MAX_ENERGY);
+        }
+        else
+        {
+            SetHealth(GetHealth() + healthToGain);
+        }
+
+    }
+
+
+    public void LoseHealth(int healthToLose)
+    {
+        if (GetHealth() >= healthToLose)
+        {
+            SetHealth(GetHealth() - healthToLose);
+        }
+        else if (GetHealth() < healthToLose)
+        {
+            SetHealth(0);
+        }
     }
 
     public void SetName(string name)
