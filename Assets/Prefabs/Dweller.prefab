@@ -156,8 +156,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0606b57f4f238b6488f7a057f3948988, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sleepingBubble: {fileID: 21300004, guid: a3ca1072839f790439cad0df254fbe5d, type: 3}
-  foodBubble: {fileID: 21300006, guid: a3ca1072839f790439cad0df254fbe5d, type: 3}
+  sleepingBubble: {fileID: 21300002, guid: 49dd43462043c2745aa5d8e3b815c8d2, type: 3}
+  foodBubble: {fileID: 21300004, guid: 49dd43462043c2745aa5d8e3b815c8d2, type: 3}
 --- !u!114 &114555649604737062
 MonoBehaviour:
   m_ObjectHideFlags: 1

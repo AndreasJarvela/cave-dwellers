@@ -14,7 +14,13 @@ public class UIHandler : MonoBehaviour {
     public Toggle areaToolButton;
     public Toggle defaultToolButton;
 
+    public GameObject areaToggleGroup;
+    public Toggle sleepingAreaButton;
+    public Toggle foodAreaButton;
+
     private ToolHandler th;
+
+    
 
     void Awake()
     {
@@ -23,25 +29,46 @@ public class UIHandler : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
         th = GetComponent<ToolHandler>();
-        miningToolButton.onValueChanged.AddListener(delegate { toolButtonClicked(ToolHandler.ToolType.MINE); });
-        areaToolButton.onValueChanged.AddListener(delegate { toolButtonClicked(ToolHandler.ToolType.AREA); });
-        defaultToolButton.onValueChanged.AddListener(delegate { toolButtonClicked(ToolHandler.ToolType.DEFAULT); });
+        areaToggleGroup.SetActive(false);
+
+        miningToolButton.onValueChanged.AddListener(delegate { ToolButtonClicked(ToolHandler.ToolType.MINE); });
+        areaToolButton.onValueChanged.AddListener(delegate { ToolButtonClicked(ToolHandler.ToolType.AREA); });
+        defaultToolButton.onValueChanged.AddListener(delegate { ToolButtonClicked(ToolHandler.ToolType.DEFAULT); });
+
+        sleepingAreaButton.onValueChanged.AddListener(delegate { AreaButtonClicked(AreaTool.Area.SLEEPING); });
+        foodAreaButton.onValueChanged.AddListener(delegate { AreaButtonClicked(AreaTool.Area.FOOD); });
     }
 
-    public void toolButtonClicked(ToolHandler.ToolType toolType)
+    public void ToolButtonClicked(ToolHandler.ToolType toolType)
     {
         switch (toolType)
         {
             case ToolHandler.ToolType.DEFAULT:
-                th.setTool(ToolHandler.ToolType.DEFAULT);
+                areaToggleGroup.SetActive(false);
+                th.SetTool(ToolHandler.ToolType.DEFAULT);
                 break;
             case ToolHandler.ToolType.MINE:
-                th.setTool(ToolHandler.ToolType.MINE);
+                areaToggleGroup.SetActive(false);
+                th.SetTool(ToolHandler.ToolType.MINE);
                 break;
             case ToolHandler.ToolType.AREA:
-                th.setTool(ToolHandler.ToolType.AREA);
+                areaToggleGroup.SetActive(true);
+                th.SetTool(ToolHandler.ToolType.AREA);
                 break;
 
+        }
+    }
+
+    public void AreaButtonClicked(AreaTool.Area areaType)
+    {
+        switch (areaType)
+        {
+            case AreaTool.Area.SLEEPING:
+                th.SetAreaType(AreaTool.Area.SLEEPING);
+                break;
+            case AreaTool.Area.FOOD:
+                th.SetAreaType(AreaTool.Area.FOOD);
+                break;
         }
     }
 	
@@ -50,19 +77,19 @@ public class UIHandler : MonoBehaviour {
 
         if (Input.GetKeyDown(KeyCode.Alpha1))
         {
-            th.setTool(ToolHandler.ToolType.DEFAULT);
+            th.SetTool(ToolHandler.ToolType.DEFAULT);
             defaultToolButton.isOn = true;
         }
 
         if (Input.GetKeyDown(KeyCode.Alpha2))
         {
-            th.setTool(ToolHandler.ToolType.MINE);
+            th.SetTool(ToolHandler.ToolType.MINE);
             miningToolButton.isOn = true;
         }
 
         if (Input.GetKeyDown(KeyCode.Alpha3))
         {
-            th.setTool(ToolHandler.ToolType.AREA);
+            th.SetTool(ToolHandler.ToolType.AREA);
             areaToolButton.isOn = true;
         }
     }

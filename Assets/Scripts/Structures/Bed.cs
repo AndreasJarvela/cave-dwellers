@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Bed : MonoBehaviour {
+public class Bed : MonoBehaviour, IStructure {
 
     private bool occupied;
     private Vector3 position;

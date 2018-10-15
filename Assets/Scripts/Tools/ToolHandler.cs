@@ -11,19 +11,26 @@ public class ToolHandler : MonoBehaviour {
     }
 
     List<ITool> toolList;
-
     ITool activeTool = null;
+
+    AreaTool areaTool;
     // Use this for initialization
     void Start () {
+        areaTool = new AreaTool();
         toolList = new List<ITool>();
         toolList.Add(new DefaultTool());
         toolList.Add(new MiningTool());
-        toolList.Add(new AreaTool());
-        setTool(ToolType.DEFAULT);
+        toolList.Add(areaTool);
+        SetTool(ToolType.DEFAULT);
+    }
+
+    public void SetAreaType(AreaTool.Area areaType)
+    {
+        areaTool.SelectArea(areaType);
     }
 
 
-    public void setTool(ToolType type)
+    public void SetTool(ToolType type)
     {
         activeTool = toolList[(int)type];
     }

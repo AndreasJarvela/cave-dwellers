@@ -80,7 +80,6 @@ class MineTask : Task
         if (progressTask)
         {
             rm.IncreaseResource(ResourceManager.ResourceType.STONE, RESOURCE_GAINED);
-            dweller.LoseHealth(10);
             progress += PROGRESS_INCREASE_RATE;
             if (progress == REQUIRED_PROGRESS)
             {

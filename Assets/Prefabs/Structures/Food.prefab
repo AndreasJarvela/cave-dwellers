@@ -9,55 +9,55 @@ Prefab:
     m_Modifications: []
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 0}
-  m_RootGameObject: {fileID: 1924678766547606}
+  m_RootGameObject: {fileID: 1691240789503074}
   m_IsPrefabAsset: 1
---- !u!1 &1924678766547606
+--- !u!1 &1691240789503074
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 4471255304445366}
-  - component: {fileID: 212400832755780716}
-  - component: {fileID: 114425047717629712}
+  - component: {fileID: 4623002821622230}
+  - component: {fileID: 212578646277390252}
+  - component: {fileID: 114853057348811630}
   m_Layer: 0
-  m_Name: Bed
-  m_TagString: Bed
+  m_Name: Food
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &4471255304445366
+--- !u!4 &4623002821622230
 Transform:
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1924678766547606}
+  m_GameObject: {fileID: 1691240789503074}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 1.493, y: -0.884, z: 0}
-  m_LocalScale: {x: 0.90852994, y: 0.90852994, z: 0.90852994}
+  m_LocalPosition: {x: 364.39224, y: 130.29564, z: -2.6545749}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &114425047717629712
+--- !u!114 &114853057348811630
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1924678766547606}
+  m_GameObject: {fileID: 1691240789503074}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fbff1075e5db4c141864b05e68cbdf3a, type: 3}
+  m_Script: {fileID: 11500000, guid: a540744baf855c841b40f38e6f3c01f5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!212 &212400832755780716
+--- !u!212 &212578646277390252
 SpriteRenderer:
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1924678766547606}
+  m_GameObject: {fileID: 1691240789503074}
   m_Enabled: 1
   m_CastShadows: 0
   m_ReceiveShadows: 0
@@ -87,7 +87,7 @@ SpriteRenderer:
   m_SortingLayerID: -209873887
   m_SortingLayer: 4
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300010, guid: d592657647e0b0b4db838b7478acd299, type: 3}
+  m_Sprite: {fileID: 21300018, guid: 49dd43462043c2745aa5d8e3b815c8d2, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0

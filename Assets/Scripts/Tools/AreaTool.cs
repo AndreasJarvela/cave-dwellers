@@ -47,7 +47,12 @@ public class AreaTool : ITool
             case Area.FOOD:
                 if (th.floor.GetTile(cellPosition) == th.floorTile && !th.HasAreaTile(cellPosition))
                 {
-
+                    if (!rm.SpendResource(ResourceManager.ResourceType.STONE, 5))
+                    {
+                        return;
+                    }
+                    th.area.SetTile(cellPosition, th.foodAreaTile);
+                    GameObject.Find("GameManager").GetComponent<WorkHandler>().AddTask(new FoodTask(cellPosition));
                 }
                 break;
             default:

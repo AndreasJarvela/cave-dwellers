@@ -104,7 +104,6 @@ public class Dweller : MonoBehaviour, IDweller {
 
     }
 
-
     public void LoseHealth(int healthToLose)
     {
         if (GetHealth() >= healthToLose)
@@ -156,9 +155,7 @@ public class Dweller : MonoBehaviour, IDweller {
         {
             SetEnergy(0);
         }
-            
-
-        
+ 
     }
 
     public void CancelCurrentAction()
