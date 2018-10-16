@@ -23,7 +23,7 @@ GameObject:
   - component: {fileID: 114853057348811630}
   m_Layer: 0
   m_Name: Food
-  m_TagString: Untagged
+  m_TagString: Food
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -52,6 +52,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a540744baf855c841b40f38e6f3c01f5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  lowSupply: {fileID: 21300014, guid: 49dd43462043c2745aa5d8e3b815c8d2, type: 3}
+  mediumSupply: {fileID: 21300016, guid: 49dd43462043c2745aa5d8e3b815c8d2, type: 3}
+  highSupply: {fileID: 21300018, guid: 49dd43462043c2745aa5d8e3b815c8d2, type: 3}
 --- !u!212 &212578646277390252
 SpriteRenderer:
   m_ObjectHideFlags: 1

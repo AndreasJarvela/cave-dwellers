@@ -28,13 +28,15 @@ public class MoveAction : IAction
 
         if (startAction)
         {
+           dweller.GetComponent<Animator>().SetTrigger("Walk");
            ai.destination = targetPosition;
            ai.SearchPath();
            startAction = false;
         }
 
         if (!ai.pathPending && (ai.reachedEndOfPath || !ai.hasPath))
-        { 
+        {
+            dweller.GetComponent<Animator>().SetTrigger("Idle");
             completed = true;
         }
     }

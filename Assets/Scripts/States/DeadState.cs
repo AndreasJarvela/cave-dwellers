@@ -2,15 +2,28 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class DeadState : MonoBehaviour {
+public class DeadState : IBehaviourState {
 
-	// Use this for initialization
-	void Start () {
-		
-	}
-	
-	// Update is called once per frame
-	void Update () {
-		
-	}
+    private Dweller dweller;
+
+    public DeadState(Dweller dweller)
+    {
+        this.dweller = dweller;
+    }
+
+    public IAction NextAction()
+    {
+        return new StopAction();
+    }
+
+    public void OnEnter()
+    {
+        dweller.GetSpeakbubble().ClearBubble();
+    }
+
+    public void OnExit()
+    {
+        
+    }
+
 }

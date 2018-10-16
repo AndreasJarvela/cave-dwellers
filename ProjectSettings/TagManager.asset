@@ -8,6 +8,7 @@ TagManager:
   - Bed
   - ResourceText
   - UIInformation
+  - Food
   layers:
   - Default
   - TransparentFX

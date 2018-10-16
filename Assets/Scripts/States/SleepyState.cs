@@ -37,13 +37,13 @@ public class SleepyState : IBehaviourState
 
     private void populateMoveToBed(Bed bed)
     {
-        actions.Enqueue(new MoveAction(bed.getPosition()));
+        actions.Enqueue(new MoveAction(bed.GetPosition()));
     }
 
     private bool hasReachedBed()
     {
         if(foundBed != null)
-            return Vector3.Distance(foundBed.getPosition(), dweller.transform.position) < 0.1f;
+            return Vector3.Distance(foundBed.GetPosition(), dweller.transform.position) < 0.1f;
         return false;
     }
 
@@ -96,9 +96,10 @@ public class SleepyState : IBehaviourState
         justMoved = !justMoved;
         if (justMoved)
         {
+            dweller.LoseHealth(5);
             return new WaitAction(3f);
         }
-
+        dweller.LoseHealth(5);
         return new MoveAction(PickRandomPoint());
     }
 

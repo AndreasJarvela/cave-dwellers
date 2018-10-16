@@ -24,28 +24,28 @@ public class Health : MonoBehaviour{
         visible = visibleColor;
     }
 
-    public void DisplayHealth (float health) {
-        if (health == 0)
+    public void DisplayHealth (float normalisedHealth) {
+        if (normalisedHealth == 0)
         {
             firstHeart.color = alpha;
             secondHeart.color = alpha;
             thirdHeart.color = alpha;
         }
-        else if (health <= 0.15)
+        else if (normalisedHealth <= 0.20)
         {
             firstHeart.sprite = halfHeart;
             firstHeart.color = visible;
             secondHeart.color = alpha;
             thirdHeart.color = alpha;
         }
-        else if (health <= 0.30)
+        else if (normalisedHealth <= 0.40)
         {
             firstHeart.sprite = fullHeart;
             firstHeart.color = visible;
             secondHeart.color = alpha;
             thirdHeart.color = alpha;
         }
-        else if (health <= 0.45)
+        else if (normalisedHealth <= 0.60)
         {
             firstHeart.sprite = fullHeart;
             firstHeart.color = visible;
@@ -53,7 +53,7 @@ public class Health : MonoBehaviour{
             secondHeart.color = visible;
             thirdHeart.color = alpha;
         }
-        else if (health <= 0.60)
+        else if (normalisedHealth <= 0.80)
         {
             firstHeart.sprite = fullHeart;
             firstHeart.color = visible;
@@ -61,7 +61,7 @@ public class Health : MonoBehaviour{
             secondHeart.color = visible;
             thirdHeart.color = alpha;
         }
-        else if (health <= 0.75)
+        else if (normalisedHealth < 1)
         {
             firstHeart.sprite = fullHeart;
             firstHeart.color = visible;

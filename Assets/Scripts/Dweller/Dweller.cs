@@ -6,15 +6,17 @@ using System;
 
 public class Dweller : MonoBehaviour, IDweller {
 
-    private const int STARTING_HEALTH = 100;
+    private const int STARTING_HEALTH = 120;
     private const int MAX_ENERGY = 100;
     private const int MAX_HUNGER = 100;
     private const int SLEEP_THRESHOLD = 1;
+    private const int HUNGER_THRESHOLD = 1;
 
     private int health;
     private int energy;
     private int hunger;
     private string dwellerName;
+    private bool dead;
 
     private IBehaviourState state;
     private IAction currentAction;
@@ -29,6 +31,7 @@ public class Dweller : MonoBehaviour, IDweller {
         this.energy = MAX_ENERGY;
         this.hunger = MAX_HUNGER;
         this.dwellerName = "Dweller";
+        this.dead = false;
         this.bubble = GetComponentInChildren<Speakbubble>();
         SetState(new FreeRoamState(this));
     }
@@ -71,6 +74,11 @@ public class Dweller : MonoBehaviour, IDweller {
         return energy;
     }
 
+    public int GetHunger()
+    {
+        return hunger;
+    }
+
     public float GetEnergyNormalised()
     {
         return (float)energy / (float)MAX_ENERGY;
@@ -78,7 +86,7 @@ public class Dweller : MonoBehaviour, IDweller {
 
     public float GetHungerNormalised()
     {
-        return (float)hunger / (float)MAX_HUNGER;
+        return (float)GetHunger() / (float)MAX_HUNGER;
     }
 
     public float GetHealthNormalised()
@@ -89,6 +97,30 @@ public class Dweller : MonoBehaviour, IDweller {
     public void SetHealth(int health)
     {
         this.health = health;
+    }
+
+    public void Eat(int amount)
+    {
+        if (GetHunger() + amount >= MAX_HUNGER)
+        {
+            hunger = MAX_HUNGER;
+        }
+        else
+        {
+            hunger += amount;
+        }
+    }
+
+    public void Starve(int amount)
+    {
+        if (GetHunger() >= amount)
+        {
+            hunger = hunger - amount;
+        }
+        else if (GetHunger() < amount)
+        {
+            hunger = 0;
+        }
     }
 
     public void GainHealth(int healthToGain)
@@ -112,6 +144,7 @@ public class Dweller : MonoBehaviour, IDweller {
         }
         else if (GetHealth() < healthToLose)
         {
+            dead = true;
             SetHealth(0);
         }
     }
@@ -131,6 +164,11 @@ public class Dweller : MonoBehaviour, IDweller {
     public int GetMaxEnergy()
     {
         return MAX_ENERGY;
+    }
+
+    public int GetMaxHunger()
+    {
+        return MAX_HUNGER;
     }
 
     public void GainEnergy(int energyToGain)
@@ -163,14 +201,34 @@ public class Dweller : MonoBehaviour, IDweller {
         currentAction = null;
     }
 
+    public void CheckVitalNeeds()
+    {
+        if (dead)
+        {
+            GetComponent<Animator>().SetTrigger("Dead");
+            SetState(new DeadState(this));
+            return;
+        }
+
+        if (GetEnergy() <= SLEEP_THRESHOLD && !(state is SleepyState))
+        {
+            SetState(new SleepyState(this));
+            return;
+        }
+
+        if (GetHunger() <= HUNGER_THRESHOLD && !(state is HungryState))
+        {
+            SetState(new HungryState(this));
+            return;
+        }
+    }
+
     void Update()
     {
         if (currentAction == null  || currentAction.Completed())
         {
-            if (GetEnergy() <= SLEEP_THRESHOLD && !(state is SleepyState))
-            {
-                SetState(new SleepyState(this));
-            }
+            Starve(1);
+            CheckVitalNeeds();
             currentAction = state.NextAction();
             if (currentAction == null)
             {

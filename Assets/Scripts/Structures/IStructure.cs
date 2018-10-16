@@ -4,5 +4,6 @@ using UnityEngine;
 
 public interface IStructure {
 
+    Vector3 GetPosition();
     void SetPosition(Vector3Int position);
 }
