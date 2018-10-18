@@ -210,13 +210,13 @@ public class Dweller : MonoBehaviour, IDweller {
             return;
         }
 
-        if (GetEnergy() <= SLEEP_THRESHOLD && !(state is SleepyState))
+        if (GetEnergy() <= SLEEP_THRESHOLD && !(state is SleepyState) && !(state is HungryState))
         {
             SetState(new SleepyState(this));
             return;
         }
 
-        if (GetHunger() <= HUNGER_THRESHOLD && !(state is HungryState))
+        if (GetHunger() <= HUNGER_THRESHOLD && !(state is HungryState) && !(state is SleepyState))
         {
             SetState(new HungryState(this));
             return;
