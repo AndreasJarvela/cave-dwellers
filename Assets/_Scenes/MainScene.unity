@@ -113,6 +113,52 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!1001 &58815898
+Prefab:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 4689095860486550, guid: 0366de66f26bd0a4d834a4ae6ed7d5b3, type: 2}
+      propertyPath: m_LocalPosition.x
+      value: -0.4
+      objectReference: {fileID: 0}
+    - target: {fileID: 4689095860486550, guid: 0366de66f26bd0a4d834a4ae6ed7d5b3, type: 2}
+      propertyPath: m_LocalPosition.y
+      value: 0.02
+      objectReference: {fileID: 0}
+    - target: {fileID: 4689095860486550, guid: 0366de66f26bd0a4d834a4ae6ed7d5b3, type: 2}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4689095860486550, guid: 0366de66f26bd0a4d834a4ae6ed7d5b3, type: 2}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4689095860486550, guid: 0366de66f26bd0a4d834a4ae6ed7d5b3, type: 2}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4689095860486550, guid: 0366de66f26bd0a4d834a4ae6ed7d5b3, type: 2}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4689095860486550, guid: 0366de66f26bd0a4d834a4ae6ed7d5b3, type: 2}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4689095860486550, guid: 0366de66f26bd0a4d834a4ae6ed7d5b3, type: 2}
+      propertyPath: m_RootOrder
+      value: 13
+      objectReference: {fileID: 0}
+    - target: {fileID: 1886715677188646, guid: 0366de66f26bd0a4d834a4ae6ed7d5b3, type: 2}
+      propertyPath: m_Name
+      value: Dweller (6)
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 0366de66f26bd0a4d834a4ae6ed7d5b3, type: 2}
+  m_IsPrefabAsset: 0
 --- !u!1001 &61423608
 Prefab:
   m_ObjectHideFlags: 0
@@ -201,6 +247,52 @@ Prefab:
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 018502d9757db0344a4a1f732ac53829, type: 2}
   m_IsPrefabAsset: 0
+--- !u!1001 &171120686
+Prefab:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 4689095860486550, guid: 0366de66f26bd0a4d834a4ae6ed7d5b3, type: 2}
+      propertyPath: m_LocalPosition.x
+      value: -0.4
+      objectReference: {fileID: 0}
+    - target: {fileID: 4689095860486550, guid: 0366de66f26bd0a4d834a4ae6ed7d5b3, type: 2}
+      propertyPath: m_LocalPosition.y
+      value: 0.02
+      objectReference: {fileID: 0}
+    - target: {fileID: 4689095860486550, guid: 0366de66f26bd0a4d834a4ae6ed7d5b3, type: 2}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4689095860486550, guid: 0366de66f26bd0a4d834a4ae6ed7d5b3, type: 2}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4689095860486550, guid: 0366de66f26bd0a4d834a4ae6ed7d5b3, type: 2}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4689095860486550, guid: 0366de66f26bd0a4d834a4ae6ed7d5b3, type: 2}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4689095860486550, guid: 0366de66f26bd0a4d834a4ae6ed7d5b3, type: 2}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4689095860486550, guid: 0366de66f26bd0a4d834a4ae6ed7d5b3, type: 2}
+      propertyPath: m_RootOrder
+      value: 16
+      objectReference: {fileID: 0}
+    - target: {fileID: 1886715677188646, guid: 0366de66f26bd0a4d834a4ae6ed7d5b3, type: 2}
+      propertyPath: m_Name
+      value: Dweller (9)
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 0366de66f26bd0a4d834a4ae6ed7d5b3, type: 2}
+  m_IsPrefabAsset: 0
 --- !u!114 &407490565 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 114053773279754120, guid: cd9bca08134cf2048b1d1e1f5660662e,
@@ -249,7 +341,7 @@ Prefab:
     - target: {fileID: 114233514043517290, guid: f47941addaa42694eadc378b3fcdf3ff,
         type: 2}
       propertyPath: m_Enabled
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 20439585455737056, guid: f47941addaa42694eadc378b3fcdf3ff,
         type: 2}
@@ -320,6 +412,52 @@ MonoBehaviour:
     type: 2}
   m_PrefabInternal: {fileID: 1436906675}
   m_Script: {fileID: 2109663825, guid: f70555f144d8491a825f0804e09c671c, type: 3}
+--- !u!1001 &786684013
+Prefab:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 4689095860486550, guid: 0366de66f26bd0a4d834a4ae6ed7d5b3, type: 2}
+      propertyPath: m_LocalPosition.x
+      value: -0.4
+      objectReference: {fileID: 0}
+    - target: {fileID: 4689095860486550, guid: 0366de66f26bd0a4d834a4ae6ed7d5b3, type: 2}
+      propertyPath: m_LocalPosition.y
+      value: 0.02
+      objectReference: {fileID: 0}
+    - target: {fileID: 4689095860486550, guid: 0366de66f26bd0a4d834a4ae6ed7d5b3, type: 2}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4689095860486550, guid: 0366de66f26bd0a4d834a4ae6ed7d5b3, type: 2}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4689095860486550, guid: 0366de66f26bd0a4d834a4ae6ed7d5b3, type: 2}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4689095860486550, guid: 0366de66f26bd0a4d834a4ae6ed7d5b3, type: 2}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4689095860486550, guid: 0366de66f26bd0a4d834a4ae6ed7d5b3, type: 2}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4689095860486550, guid: 0366de66f26bd0a4d834a4ae6ed7d5b3, type: 2}
+      propertyPath: m_RootOrder
+      value: 18
+      objectReference: {fileID: 0}
+    - target: {fileID: 1886715677188646, guid: 0366de66f26bd0a4d834a4ae6ed7d5b3, type: 2}
+      propertyPath: m_Name
+      value: Dweller (11)
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 0366de66f26bd0a4d834a4ae6ed7d5b3, type: 2}
+  m_IsPrefabAsset: 0
 --- !u!1839735485 &863743080 stripped
 Tilemap:
   m_CorrespondingSourceObject: {fileID: 8195094280734449070, guid: a24076e5750f8ec4bb29f349baea7f8f,
@@ -598,6 +736,52 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 75ff090c39ee9fb46bb507668faf9fd5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1001 &1290381409
+Prefab:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 4689095860486550, guid: 0366de66f26bd0a4d834a4ae6ed7d5b3, type: 2}
+      propertyPath: m_LocalPosition.x
+      value: -0.4
+      objectReference: {fileID: 0}
+    - target: {fileID: 4689095860486550, guid: 0366de66f26bd0a4d834a4ae6ed7d5b3, type: 2}
+      propertyPath: m_LocalPosition.y
+      value: 0.02
+      objectReference: {fileID: 0}
+    - target: {fileID: 4689095860486550, guid: 0366de66f26bd0a4d834a4ae6ed7d5b3, type: 2}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4689095860486550, guid: 0366de66f26bd0a4d834a4ae6ed7d5b3, type: 2}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4689095860486550, guid: 0366de66f26bd0a4d834a4ae6ed7d5b3, type: 2}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4689095860486550, guid: 0366de66f26bd0a4d834a4ae6ed7d5b3, type: 2}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4689095860486550, guid: 0366de66f26bd0a4d834a4ae6ed7d5b3, type: 2}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4689095860486550, guid: 0366de66f26bd0a4d834a4ae6ed7d5b3, type: 2}
+      propertyPath: m_RootOrder
+      value: 15
+      objectReference: {fileID: 0}
+    - target: {fileID: 1886715677188646, guid: 0366de66f26bd0a4d834a4ae6ed7d5b3, type: 2}
+      propertyPath: m_Name
+      value: Dweller (8)
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 0366de66f26bd0a4d834a4ae6ed7d5b3, type: 2}
+  m_IsPrefabAsset: 0
 --- !u!1839735485 &1317376087 stripped
 Tilemap:
   m_CorrespondingSourceObject: {fileID: 8195094281715304818, guid: a24076e5750f8ec4bb29f349baea7f8f,
@@ -5629,6 +5813,52 @@ Prefab:
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0366de66f26bd0a4d834a4ae6ed7d5b3, type: 2}
   m_IsPrefabAsset: 0
+--- !u!1001 &1600392296
+Prefab:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 4689095860486550, guid: 0366de66f26bd0a4d834a4ae6ed7d5b3, type: 2}
+      propertyPath: m_LocalPosition.x
+      value: -0.4
+      objectReference: {fileID: 0}
+    - target: {fileID: 4689095860486550, guid: 0366de66f26bd0a4d834a4ae6ed7d5b3, type: 2}
+      propertyPath: m_LocalPosition.y
+      value: 0.02
+      objectReference: {fileID: 0}
+    - target: {fileID: 4689095860486550, guid: 0366de66f26bd0a4d834a4ae6ed7d5b3, type: 2}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4689095860486550, guid: 0366de66f26bd0a4d834a4ae6ed7d5b3, type: 2}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4689095860486550, guid: 0366de66f26bd0a4d834a4ae6ed7d5b3, type: 2}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4689095860486550, guid: 0366de66f26bd0a4d834a4ae6ed7d5b3, type: 2}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4689095860486550, guid: 0366de66f26bd0a4d834a4ae6ed7d5b3, type: 2}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4689095860486550, guid: 0366de66f26bd0a4d834a4ae6ed7d5b3, type: 2}
+      propertyPath: m_RootOrder
+      value: 17
+      objectReference: {fileID: 0}
+    - target: {fileID: 1886715677188646, guid: 0366de66f26bd0a4d834a4ae6ed7d5b3, type: 2}
+      propertyPath: m_Name
+      value: Dweller (10)
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 0366de66f26bd0a4d834a4ae6ed7d5b3, type: 2}
+  m_IsPrefabAsset: 0
 --- !u!1839735485 &1795534407 stripped
 Tilemap:
   m_CorrespondingSourceObject: {fileID: 8195094281942053598, guid: a24076e5750f8ec4bb29f349baea7f8f,
@@ -5756,4 +5986,50 @@ Prefab:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7641fb319abda7442a92b4dac6fa8402, type: 2}
+  m_IsPrefabAsset: 0
+--- !u!1001 &2096705825
+Prefab:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 4689095860486550, guid: 0366de66f26bd0a4d834a4ae6ed7d5b3, type: 2}
+      propertyPath: m_LocalPosition.x
+      value: -0.4
+      objectReference: {fileID: 0}
+    - target: {fileID: 4689095860486550, guid: 0366de66f26bd0a4d834a4ae6ed7d5b3, type: 2}
+      propertyPath: m_LocalPosition.y
+      value: 0.02
+      objectReference: {fileID: 0}
+    - target: {fileID: 4689095860486550, guid: 0366de66f26bd0a4d834a4ae6ed7d5b3, type: 2}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4689095860486550, guid: 0366de66f26bd0a4d834a4ae6ed7d5b3, type: 2}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4689095860486550, guid: 0366de66f26bd0a4d834a4ae6ed7d5b3, type: 2}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4689095860486550, guid: 0366de66f26bd0a4d834a4ae6ed7d5b3, type: 2}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4689095860486550, guid: 0366de66f26bd0a4d834a4ae6ed7d5b3, type: 2}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4689095860486550, guid: 0366de66f26bd0a4d834a4ae6ed7d5b3, type: 2}
+      propertyPath: m_RootOrder
+      value: 14
+      objectReference: {fileID: 0}
+    - target: {fileID: 1886715677188646, guid: 0366de66f26bd0a4d834a4ae6ed7d5b3, type: 2}
+      propertyPath: m_Name
+      value: Dweller (7)
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 0366de66f26bd0a4d834a4ae6ed7d5b3, type: 2}
   m_IsPrefabAsset: 0
