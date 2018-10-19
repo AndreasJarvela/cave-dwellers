@@ -1,7 +1,7 @@
 ## Cave Dwellers
 My game submission to LiU Game Conference & Game Awards 2018.
 
-#### Preview
+#### Preview (Pre-Alpha Stage)
 ![alt text](https://raw.githubusercontent.com/AndreasJarvela/cave-dwellers/master/game-preview.png)
 
 #### Status
