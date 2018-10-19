@@ -8,7 +8,7 @@ My game submission to LiU Game Conference & Game Awards 2018.
 Under development
 
 ## Frameworks and libraries used
-Unity
+Unity <br>
 A* Pathfinding by Aaron Granberg
 
 ### Authors
