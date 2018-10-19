@@ -32,6 +32,11 @@ public class Food : MonoBehaviour, IStructure {
 
     public int TakeFood()
     {
+        if (IsEmpty())
+        {
+            return 0;
+        }
+
         currentFoodSupply -= ONE_BITE;
         if (currentFoodSupply <= 0)
         {
