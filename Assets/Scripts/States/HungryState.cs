@@ -72,7 +72,8 @@ public class HungryState : IBehaviourState
         if (HasReachedFood())
         {
 
-            if (dweller.GetHunger() == dweller.GetMaxEnergy() || foundFood.IsEmpty())
+            dweller.Eat(foundFood.TakeFood());
+            if (dweller.GetHunger() == dweller.GetMaxHunger() || foundFood.IsEmpty())
             {
                 OnExit();
                 return new NewStateAction(new FreeRoamState(dweller));
@@ -83,7 +84,6 @@ public class HungryState : IBehaviourState
                 dweller.GetComponent<Animator>().SetTrigger("Eat");
                 PlayAnimation = false;
             }
-            dweller.Eat(foundFood.TakeFood());
             return new WaitAction(1f);
         }
 

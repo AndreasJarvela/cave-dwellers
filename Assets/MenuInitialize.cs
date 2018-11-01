@@ -2,8 +2,10 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Tilemaps;
+using UnityEngine.SceneManagement;
 
-public class Initialize : MonoBehaviour {
+public class MenuInitialize : MonoBehaviour
+{
 
 
     public const int width = 150;
@@ -15,10 +17,11 @@ public class Initialize : MonoBehaviour {
 
 
     // Use this for initialization
-    void Start() {
+    void Start()
+    {
         th = GetComponent<TileHandler>();
         //minimap = GameObject.Find("UI").GetComponentInChildren<Minimap>();
-        InitializeMap();
+        //InitializeMap();
         PopulateWorkHandlerWithCurrentDwellers();
         StartCoroutine(ScanGraph());
     }
@@ -32,11 +35,10 @@ public class Initialize : MonoBehaviour {
 
     void PopulateWorkHandlerWithCurrentDwellers()
     {
-        foreach(GameObject d in GameObject.FindGameObjectsWithTag("Dweller"))
+        foreach (GameObject d in GameObject.FindGameObjectsWithTag("Dweller"))
         {
             GetComponent<WorkHandler>().AddDweller(d.GetComponent<Dweller>());
         }
-
 
     }
 
@@ -59,9 +61,17 @@ public class Initialize : MonoBehaviour {
                 th.walls.SetTile(new Vector3Int(i, j, 0), null);
             }
         }
-        
+
+    }
+    public void OnStartGame_Click()
+    {
+        SceneManager.LoadScene("MainScene");
     }
 
+    public void OnExitGame_Click()
+    {
+        Application.Quit();
+    }
 
     // Update is called once per frame
     void Update()

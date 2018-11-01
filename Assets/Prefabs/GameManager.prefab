@@ -20,6 +20,18 @@ GameObject:
   m_Component:
   - component: {fileID: 4650034658230492}
   - component: {fileID: 114802914454300904}
+  - component: {fileID: 114763849591253438}
+  - component: {fileID: 114949554049696786}
+  - component: {fileID: 114993696143189314}
+  - component: {fileID: 114713746165468604}
+  - component: {fileID: 114793095018423488}
+  - component: {fileID: 114803950119815074}
+  - component: {fileID: 114706178345860120}
+  - component: {fileID: 114833674417489722}
+  - component: {fileID: 114775530934090640}
+  - component: {fileID: 114707200618702060}
+  - component: {fileID: 114808000695850572}
+  - component: {fileID: 114739028942285496}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -40,6 +52,102 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &114706178345860120
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1523388788907946}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c871b60b7b3683f46929643ab4ec7be3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &114707200618702060
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1523388788907946}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 161d8d0d67bea6a4b91d9aeb49c2538b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  bedPrefab: {fileID: 1924678766547606, guid: 699d479827a721d4588419feeabbd0cf, type: 2}
+  foodPrefab: {fileID: 1691240789503074, guid: b5b5036f50fc3a7458433268d1702512, type: 2}
+--- !u!114 &114713746165468604
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1523388788907946}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 161d8d0d67bea6a4b91d9aeb49c2538b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  bedPrefab: {fileID: 1924678766547606, guid: 699d479827a721d4588419feeabbd0cf, type: 2}
+  foodPrefab: {fileID: 1691240789503074, guid: b5b5036f50fc3a7458433268d1702512, type: 2}
+--- !u!114 &114739028942285496
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1523388788907946}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 75ff090c39ee9fb46bb507668faf9fd5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &114763849591253438
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1523388788907946}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c871b60b7b3683f46929643ab4ec7be3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &114775530934090640
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1523388788907946}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6007fb6b6de60e24ebef610239c12cab, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  toolEffects: {fileID: 0}
+  walls: {fileID: 0}
+  floor: {fileID: 0}
+  area: {fileID: 0}
+  miningEffect: {fileID: 11400000, guid: f4ac3e7a947e0eb4f88e628ab20509e6, type: 2}
+  wallTile: {fileID: 11400000, guid: dd57accbc17c2fd459e1899bcd732e62, type: 2}
+  floorTile: {fileID: 11400000, guid: 2639a30bc176bfe4484232a3ba609835, type: 2}
+  sleepingAreaTile: {fileID: 11400000, guid: 49fee5892d4f8d3499ef33abb92720e7, type: 2}
+  foodAreaTile: {fileID: 11400000, guid: b0ed0b270c89d584a91545ba96c814e9, type: 2}
+--- !u!114 &114793095018423488
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1523388788907946}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 33a11ca8942d38c46bbb91e663245c9a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  miningToolButton: {fileID: 0}
+  areaToolButton: {fileID: 0}
+  defaultToolButton: {fileID: 0}
+  areaToggleGroup: {fileID: 0}
+  sleepingAreaButton: {fileID: 0}
+  foodAreaButton: {fileID: 0}
 --- !u!114 &114802914454300904
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -51,3 +159,73 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 79e5075f0e06c38468a9adcf5f0d82eb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &114803950119815074
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1523388788907946}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 75ff090c39ee9fb46bb507668faf9fd5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &114808000695850572
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1523388788907946}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 33a11ca8942d38c46bbb91e663245c9a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  miningToolButton: {fileID: 0}
+  areaToolButton: {fileID: 0}
+  defaultToolButton: {fileID: 0}
+  areaToggleGroup: {fileID: 0}
+  sleepingAreaButton: {fileID: 0}
+  foodAreaButton: {fileID: 0}
+--- !u!114 &114833674417489722
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1523388788907946}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 48960d8af1f18c14289feb228832afd1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &114949554049696786
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1523388788907946}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 48960d8af1f18c14289feb228832afd1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &114993696143189314
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1523388788907946}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6007fb6b6de60e24ebef610239c12cab, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  toolEffects: {fileID: 0}
+  walls: {fileID: 0}
+  floor: {fileID: 0}
+  area: {fileID: 0}
+  miningEffect: {fileID: 11400000, guid: f4ac3e7a947e0eb4f88e628ab20509e6, type: 2}
+  wallTile: {fileID: 11400000, guid: dd57accbc17c2fd459e1899bcd732e62, type: 2}
+  floorTile: {fileID: 11400000, guid: 2639a30bc176bfe4484232a3ba609835, type: 2}
+  sleepingAreaTile: {fileID: 11400000, guid: 49fee5892d4f8d3499ef33abb92720e7, type: 2}
+  foodAreaTile: {fileID: 11400000, guid: b0ed0b270c89d584a91545ba96c814e9, type: 2}

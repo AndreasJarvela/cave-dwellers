@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Name: SleepingAreaTile
   m_EditorClassIdentifier: 
   m_Sprite: {fileID: 21300030, guid: d592657647e0b0b4db838b7478acd299, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 0.19607843}
+  m_Color: {r: 1, g: 1, b: 1, a: 0.15686275}
   m_Transform:
     e00: 1
     e01: 0
