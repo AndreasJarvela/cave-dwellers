@@ -27,7 +27,7 @@ public class ConstructAction : IAction
     public void Update(Dweller dweller)
     {
         
-        GameObject struc = GameObject.Instantiate(structure, position + new Vector3(0.5f, 0f ,0f), Quaternion.identity);
+        GameObject struc = GameObject.Instantiate(structure, position + new Vector3(0.5f, 0.5f ,0f), Quaternion.identity);
         struc.GetComponent<IStructure>().SetPosition(position);
         struc.transform.parent = GameObject.Find("Structures").transform;
         if (struc != null)

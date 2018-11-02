@@ -1,10 +1,15 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using Pathfinding;
 using UnityEngine;
 
-public interface ITool {
+public class Zombie : Enemy
+{
 
-    void Update();
-    void CleanUp();
+    public Zombie()
+    {
+
+    }
+
 
 }

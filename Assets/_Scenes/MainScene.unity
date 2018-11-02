@@ -361,8 +361,55 @@ Prefab:
       propertyPath: m_Name
       value: Dweller (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 114940510252360268, guid: 0366de66f26bd0a4d834a4ae6ed7d5b3,
+        type: 2}
+      propertyPath: detailedGizmos
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0366de66f26bd0a4d834a4ae6ed7d5b3, type: 2}
+  m_IsPrefabAsset: 0
+--- !u!1001 &1075091844
+Prefab:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 4377100428688370, guid: 65a314f9bce232c43a857ac225b95436, type: 2}
+      propertyPath: m_LocalPosition.x
+      value: -0.035
+      objectReference: {fileID: 0}
+    - target: {fileID: 4377100428688370, guid: 65a314f9bce232c43a857ac225b95436, type: 2}
+      propertyPath: m_LocalPosition.y
+      value: 0.021
+      objectReference: {fileID: 0}
+    - target: {fileID: 4377100428688370, guid: 65a314f9bce232c43a857ac225b95436, type: 2}
+      propertyPath: m_LocalPosition.z
+      value: 8.763456
+      objectReference: {fileID: 0}
+    - target: {fileID: 4377100428688370, guid: 65a314f9bce232c43a857ac225b95436, type: 2}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4377100428688370, guid: 65a314f9bce232c43a857ac225b95436, type: 2}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4377100428688370, guid: 65a314f9bce232c43a857ac225b95436, type: 2}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4377100428688370, guid: 65a314f9bce232c43a857ac225b95436, type: 2}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4377100428688370, guid: 65a314f9bce232c43a857ac225b95436, type: 2}
+      propertyPath: m_RootOrder
+      value: 12
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 65a314f9bce232c43a857ac225b95436, type: 2}
   m_IsPrefabAsset: 0
 --- !u!114 &1075985677 stripped
 MonoBehaviour:
@@ -514,7 +561,42 @@ Prefab:
       propertyPath: foodAreaButton
       value: 
       objectReference: {fileID: 774721761}
-    m_RemovedComponents: []
+    - target: {fileID: 114993696143189314, guid: 64de3ac40c7ae0947b0844b22a3cb54b,
+        type: 2}
+      propertyPath: structureTile
+      value: 
+      objectReference: {fileID: 11400000, guid: 49fee5892d4f8d3499ef33abb92720e7,
+        type: 2}
+    - target: {fileID: 114775530934090640, guid: 64de3ac40c7ae0947b0844b22a3cb54b,
+        type: 2}
+      propertyPath: structureTile
+      value: 
+      objectReference: {fileID: 11400000, guid: 49fee5892d4f8d3499ef33abb92720e7,
+        type: 2}
+    - target: {fileID: 114993696143189314, guid: 64de3ac40c7ae0947b0844b22a3cb54b,
+        type: 2}
+      propertyPath: bedTile
+      value: 
+      objectReference: {fileID: 11400000, guid: 49fee5892d4f8d3499ef33abb92720e7,
+        type: 2}
+    - target: {fileID: 114993696143189314, guid: 64de3ac40c7ae0947b0844b22a3cb54b,
+        type: 2}
+      propertyPath: foodTile
+      value: 
+      objectReference: {fileID: 11400000, guid: ca744f03feb222f43ae18d4f8a421330,
+        type: 2}
+    - target: {fileID: 114993696143189314, guid: 64de3ac40c7ae0947b0844b22a3cb54b,
+        type: 2}
+      propertyPath: Structure
+      value: 
+      objectReference: {fileID: 863743080}
+    m_RemovedComponents:
+    - {fileID: 114775530934090640, guid: 64de3ac40c7ae0947b0844b22a3cb54b, type: 2}
+    - {fileID: 114706178345860120, guid: 64de3ac40c7ae0947b0844b22a3cb54b, type: 2}
+    - {fileID: 114833674417489722, guid: 64de3ac40c7ae0947b0844b22a3cb54b, type: 2}
+    - {fileID: 114707200618702060, guid: 64de3ac40c7ae0947b0844b22a3cb54b, type: 2}
+    - {fileID: 114808000695850572, guid: 64de3ac40c7ae0947b0844b22a3cb54b, type: 2}
+    - {fileID: 114739028942285496, guid: 64de3ac40c7ae0947b0844b22a3cb54b, type: 2}
   m_SourcePrefab: {fileID: 100100000, guid: 64de3ac40c7ae0947b0844b22a3cb54b, type: 2}
   m_IsPrefabAsset: 0
 --- !u!1839735485 &1317376087 stripped
@@ -570,6 +652,10 @@ Prefab:
         type: 2}
       propertyPath: m_SortingLayer
       value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1388833641850626, guid: a24076e5750f8ec4bb29f349baea7f8f, type: 2}
+      propertyPath: m_Name
+      value: Structures
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a24076e5750f8ec4bb29f349baea7f8f, type: 2}

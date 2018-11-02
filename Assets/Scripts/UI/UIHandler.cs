@@ -35,8 +35,8 @@ public class UIHandler : MonoBehaviour {
         areaToolButton.onValueChanged.AddListener(delegate { ToolButtonClicked(ToolHandler.ToolType.AREA); });
         defaultToolButton.onValueChanged.AddListener(delegate { ToolButtonClicked(ToolHandler.ToolType.DEFAULT); });
 
-        sleepingAreaButton.onValueChanged.AddListener(delegate { AreaButtonClicked(AreaTool.Area.SLEEPING); });
-        foodAreaButton.onValueChanged.AddListener(delegate { AreaButtonClicked(AreaTool.Area.FOOD); });
+        sleepingAreaButton.onValueChanged.AddListener(delegate { AreaButtonClicked(StructureTool.Structure.BED); });
+        foodAreaButton.onValueChanged.AddListener(delegate { AreaButtonClicked(StructureTool.Structure.FOOD); });
     }
 
     public void ToolButtonClicked(ToolHandler.ToolType toolType)
@@ -59,15 +59,15 @@ public class UIHandler : MonoBehaviour {
         }
     }
 
-    public void AreaButtonClicked(AreaTool.Area areaType)
+    public void AreaButtonClicked(StructureTool.Structure areaType)
     {
         switch (areaType)
         {
-            case AreaTool.Area.SLEEPING:
-                th.SetAreaType(AreaTool.Area.SLEEPING);
+            case StructureTool.Structure.BED:
+                th.SetStructureType(StructureTool.Structure.BED);
                 break;
-            case AreaTool.Area.FOOD:
-                th.SetAreaType(AreaTool.Area.FOOD);
+            case StructureTool.Structure.FOOD:
+                th.SetStructureType(StructureTool.Structure.FOOD);
                 break;
         }
     }

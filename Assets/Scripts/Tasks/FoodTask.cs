@@ -11,10 +11,12 @@ public class FoodTask : Task
 
     private Dweller dweller;
     private PrefabHandler ph;
+    private TileHandler th;
 
     public FoodTask(Vector3Int taskPosition) : base(taskPosition)
     {
         this.ph = GameObject.Find("GameManager").GetComponent<PrefabHandler>();
+        this.th = GameObject.Find("GameManager").GetComponent<TileHandler>();
         this.taskPosition = taskPosition;
         this.centerOfTask = taskPosition + new Vector3(0.5f, 0.5f, 0);
         this.taskCompleted = false;
@@ -32,6 +34,7 @@ public class FoodTask : Task
 
     public override bool CheckCriteria()
     {
+
         return Vector3.Distance(centerOfTask, dweller.transform.position) < VALID_DISTANCE_FROM_TASK;
     }
 
@@ -76,6 +79,7 @@ public class FoodTask : Task
                     return new ConstructAction(ph.foodPrefab, taskPosition);
                 }
                 taskCompleted = true;
+                th.Structure.SetTile(taskPosition, null);
                 return new NewStateAction(new FreeRoamState(dweller));
             }
             return new StopAction();

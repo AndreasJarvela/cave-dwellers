@@ -11,8 +11,12 @@ public class DefaultTool : ITool {
         selected = null;
     }
 
+    public void CleanUp()
+    {
+        
+    }
 
-    void ITool.Update()
+    public void Update()
     {
         if (Input.GetMouseButtonDown(0))
         {

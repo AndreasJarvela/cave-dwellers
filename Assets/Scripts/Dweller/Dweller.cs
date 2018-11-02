@@ -103,7 +103,6 @@ public class Dweller : MonoBehaviour, IDweller {
     {
         if (GetHunger() + amount >= MAX_HUNGER)
         {
-            Debug.Log("Hungry no more!");
             hunger = MAX_HUNGER;
         }
         else

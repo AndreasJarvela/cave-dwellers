@@ -1,17 +1,34 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
-using Pathfinding;
 using UnityEngine;
 
-public abstract class Enemy : MonoBehaviour
+public abstract class Enemy : MonoBehaviour, IEnemy
 {
-    public int health;
-    //private IEnemyBehaviour state;
+    private IEnemyBehaviourState state;
+    private IEnemyAction currentAction;
 
-    public Enemy()
-    {
 
+    void Start () {
+		
+	}
+	
+
+	void Update () {
+        if (currentAction == null || currentAction.Completed())
+        {
+            //CheckVitalNeeds();
+            currentAction = state.NextAction();
+            if (currentAction == null)
+            {
+                //SetState(new FreeRoamState(this));
+            }
+        }
+
+        if (currentAction != null)
+        {
+            currentAction.Update(this);
+        }
+
+        GetComponent<SpriteRenderer>().sortingOrder = -(int)(transform.position.y * 1000f);
     }
-
-
 }

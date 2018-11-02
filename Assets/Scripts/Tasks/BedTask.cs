@@ -17,10 +17,12 @@ public class BedTask : ITask
     private Dweller dweller;
 
     private PrefabHandler ph;
+    private TileHandler th;
 
     public BedTask(Vector3Int cellPosition)
     {
         this.ph = GameObject.Find("GameManager").GetComponent<PrefabHandler>();
+        this.th = GameObject.Find("GameManager").GetComponent<TileHandler>();
         this.taskPosition = cellPosition;
         this.centerOfTask = cellPosition + new Vector3(0.5f, 0.5f, 0);
         this.taskCompleted = false;
@@ -99,6 +101,7 @@ public class BedTask : ITask
 
     public bool TaskCompleted()
     {
+        th.Structure.SetTile(taskPosition, null);
         return taskCompleted;
     }
 

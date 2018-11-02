@@ -9,10 +9,10 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 1
   m_Script: {fileID: 13312, guid: 0000000000000000e000000000000000, type: 0}
-  m_Name: SleepingAreaTile
+  m_Name: BedTile
   m_EditorClassIdentifier: 
-  m_Sprite: {fileID: 21300030, guid: d592657647e0b0b4db838b7478acd299, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 0.15686275}
+  m_Sprite: {fileID: 21300010, guid: d592657647e0b0b4db838b7478acd299, type: 3}
+  m_Color: {r: 1, g: 1, b: 1, a: 0.19607843}
   m_Transform:
     e00: 1
     e01: 0

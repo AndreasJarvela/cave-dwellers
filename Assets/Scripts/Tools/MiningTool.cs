@@ -32,8 +32,12 @@ public class MiningTool : ITool
         GameObject.Find("GameManager").GetComponent<WorkHandler>().RemoveTask(cellPosition);
     }
 
+    public void CleanUp()
+    {
+      
+    }
 
-    void ITool.Update()
+    public void Update()
     {
         if (Input.GetMouseButton(0) && !EventSystem.current.IsPointerOverGameObject())
         {
