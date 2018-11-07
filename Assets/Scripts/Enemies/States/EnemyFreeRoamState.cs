@@ -34,20 +34,18 @@ public class EnemyFreeRoamState : IEnemyBehaviourState
 
     public IEnemyAction NextAction()
     {
-        return null;
-        /*
-        justMoved ? return new WaitAction(Random.Range(1f, 3f)) : return ;
+        
         if (!justMoved)
         {
             justMoved = true;
-            return new MoveAction(PickRandomPoint());
+            return new EnemyMoveAction(PickRandomPoint());
         }
         else
         {
             justMoved = false;
-            return new WaitAction(Random.Range(1f, 3f));
+            return new EnemyWaitAction(Random.Range(1f, 3f));
         }
-        */
+        
     }
 
     public void OnExit()

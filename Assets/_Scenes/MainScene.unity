@@ -408,6 +408,21 @@ Prefab:
       propertyPath: m_RootOrder
       value: 12
       objectReference: {fileID: 0}
+    - target: {fileID: 212529639555227640, guid: 65a314f9bce232c43a857ac225b95436,
+        type: 2}
+      propertyPath: m_SortingLayerID
+      value: -209873887
+      objectReference: {fileID: 0}
+    - target: {fileID: 212529639555227640, guid: 65a314f9bce232c43a857ac225b95436,
+        type: 2}
+      propertyPath: m_SortingLayer
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 114619417493254994, guid: 65a314f9bce232c43a857ac225b95436,
+        type: 2}
+      propertyPath: speed
+      value: 1.5
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 65a314f9bce232c43a857ac225b95436, type: 2}
   m_IsPrefabAsset: 0
@@ -422,6 +437,22 @@ Tilemap:
   m_CorrespondingSourceObject: {fileID: 8195094279631977710, guid: a24076e5750f8ec4bb29f349baea7f8f,
     type: 2}
   m_PrefabInternal: {fileID: 1321515819}
+--- !u!1 &1191165046 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1821316620730796, guid: 65a314f9bce232c43a857ac225b95436,
+    type: 2}
+  m_PrefabInternal: {fileID: 1075091844}
+--- !u!114 &1191165053
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1191165046}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ef49106d95854ff4cadee0fd802bf1f8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &1191739352
 Prefab:
   m_ObjectHideFlags: 0

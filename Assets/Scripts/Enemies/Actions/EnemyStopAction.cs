@@ -1,16 +1,27 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Pathfinding;
 
-public class EnemyStopAction : MonoBehaviour {
+public class EnemyStopAction : IEnemyAction
+{
+    private bool completed;
 
-	// Use this for initialization
-	void Start () {
-		
-	}
-	
-	// Update is called once per frame
-	void Update () {
-		
-	}
+    public EnemyStopAction()
+    {
+        completed = false;
+    }
+
+    public bool Completed()
+    {
+        return completed;
+    }
+
+    public void Update(Enemy enemy)
+    {
+        IAstarAI ai = enemy.GetComponent<IAstarAI>();
+        ai.destination = enemy.transform.position;
+        ai.SearchPath();
+        completed = true;
+    }
 }

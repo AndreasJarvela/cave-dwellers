@@ -9,11 +9,24 @@ public abstract class Enemy : MonoBehaviour, IEnemy
 
 
     void Start () {
-		
+        Debug.Log("sug en fet wiktor");
+        SetState(new EnemyFreeRoamState(this));
 	}
-	
 
-	void Update () {
+    public abstract void UpdateSpecific();
+
+    public void SetState(IEnemyBehaviourState newState)
+    {
+        if (state != null)
+            state.OnExit();
+        state = newState;
+        state.OnEnter();
+        currentAction = null;
+    }
+
+    void Update () {
+        UpdateSpecific();
+
         if (currentAction == null || currentAction.Completed())
         {
             //CheckVitalNeeds();
@@ -29,6 +42,7 @@ public abstract class Enemy : MonoBehaviour, IEnemy
             currentAction.Update(this);
         }
 
+      
         GetComponent<SpriteRenderer>().sortingOrder = -(int)(transform.position.y * 1000f);
     }
 }

@@ -4,7 +4,7 @@ using UnityEngine;
 
 public interface IEnemyAction
 {
-    void Update(Enemy dweller);
+    void Update(Enemy enemy);
     bool Completed();
 
 }

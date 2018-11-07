@@ -11,5 +11,8 @@ public class Zombie : Enemy
 
     }
 
-
+    public override void UpdateSpecific()
+    {
+        
+    }
 }
