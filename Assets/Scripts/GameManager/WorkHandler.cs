@@ -44,10 +44,23 @@ public class WorkHandler : MonoBehaviour {
            ITask task = GetAvailableTask();
             if (task != null)
             {
+                if (!TaskCanBeReached(task, dweller))
+                {
+                    MoveFrontTaskToLast();
+                    return;
+                }
                 dweller.SetState(new WorkingState((Dweller)dweller, task));
             }
         }
        
+    }
+
+    private bool TaskCanBeReached(ITask task, IDweller dweller)
+    {
+        Dweller d = (Dweller)dweller;
+        GraphNode dwellerNode = AstarPath.active.GetNearest(d.transform.position, NNConstraint.Default).node;
+        GraphNode mineTaskNode = AstarPath.active.GetNearest(task.GetMovePosition(), NNConstraint.Default).node;
+        return PathUtilities.IsPathPossible(dwellerNode, mineTaskNode);
     }
 
     private void UpdateCompletedTasks()
@@ -57,6 +70,13 @@ public class WorkHandler : MonoBehaviour {
             ITask task = activeTasks[i];
             if (task.TaskCompleted()) activeTasks.RemoveAt(i);
         }
+    }
+
+    private void MoveFrontTaskToLast()
+    {
+        ITask task = activeTasks[0];
+        activeTasks.RemoveAt(0);
+        activeTasks.Add(task);
     }
 
     private ITask GetAvailableTask()

@@ -50,9 +50,9 @@ class MineTask : Task
         GraphNode dwellerNode = AstarPath.active.GetNearest(dweller.transform.position, NNConstraint.Default).node;
         GraphNode mineTaskNode = AstarPath.active.GetNearest(targetPosition, NNConstraint.Default).node;
 
-        if(PathUtilities.IsPathPossible(dwellerNode, mineTaskNode))
+        if (PathUtilities.IsPathPossible(dwellerNode, mineTaskNode))
         {
-
+            Debug.Log("Possible!");
         }
         */
         criteraQueue.Enqueue(new MoveAction(targetPosition));
@@ -75,7 +75,7 @@ class MineTask : Task
 
     public override IAction Progress()
     {
-        dweller.LoseEnergy(GetEnergyCost());
+        //dweller.LoseEnergy(GetEnergyCost());
 
         if (progressTask)
         {
@@ -132,7 +132,8 @@ class MineTask : Task
         TileBase floorTile = tileHandler.GetFloorTileBase();
 
         bool active = false;
-
+      
+        
         if (floor.GetTile(left) == floorTile)
         {
             Vector3 pos = (Vector3)taskPosition + new Vector3(0, 0.5f, 0);
@@ -161,11 +162,18 @@ class MineTask : Task
             active = true;
         }
 
+
+
         return active;
     }
 
     public override int GetEnergyCost()
     {
         return ENERGY_COST;
+    }
+
+    public override Vector3 GetMovePosition()
+    {
+        return targetPosition;
     }
 }

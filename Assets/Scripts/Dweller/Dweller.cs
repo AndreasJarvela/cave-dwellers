@@ -227,7 +227,7 @@ public class Dweller : MonoBehaviour, IDweller {
     {
         if (currentAction == null  || currentAction.Completed())
         {
-            Starve(1);
+            //Starve(1);
             CheckVitalNeeds();
             currentAction = state.NextAction();
             if (currentAction == null)

@@ -90,4 +90,9 @@ public class FoodTask : Task
     {
         return true;
     }
+
+    public override Vector3 GetMovePosition()
+    {
+        return centerOfTask;
+    }
 }

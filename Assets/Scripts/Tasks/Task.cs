@@ -28,6 +28,8 @@ public abstract class Task : ITask
 
     public abstract bool TaskActive();
 
+    public abstract Vector3 GetMovePosition();
+
     public void SetTaskAssigned(bool assigned)
     {
         this.taskAssigned = assigned;
@@ -42,4 +44,5 @@ public abstract class Task : ITask
     {
         return taskCompleted;
     }
+
 }

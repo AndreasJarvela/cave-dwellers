@@ -37,6 +37,7 @@ public class BedTask : ITask
         criteraQueue.Enqueue(new StopAction());
     }
 
+
     public bool CheckCriteria()
     {
         return Vector3.Distance(centerOfTask, dweller.transform.position) < VALID_DISTANCE_FROM_TASK;
@@ -78,6 +79,7 @@ public class BedTask : ITask
                     return new ConstructAction(ph.bedPrefab, taskPosition);
                 }
                 taskCompleted = true;
+                th.Structure.SetTile(taskPosition, null);
                 return new NewStateAction(new FreeRoamState(dweller));
             }
             return new StopAction();
@@ -101,12 +103,16 @@ public class BedTask : ITask
 
     public bool TaskCompleted()
     {
-        th.Structure.SetTile(taskPosition, null);
         return taskCompleted;
     }
 
     public int GetEnergyCost()
     {
         return 0;
+    }
+
+    public Vector3 GetMovePosition()
+    {
+        return centerOfTask;
     }
 }

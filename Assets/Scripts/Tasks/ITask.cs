@@ -28,6 +28,13 @@ public interface ITask
     IAction GetCriteria();
 
     /**
+    * <summary>
+    * Returns the position in which the dweller has to move in order to perform this task.
+    * </summary>
+    **/
+    Vector3 GetMovePosition();
+
+    /**
      * <summary>
      * Given that the task has met it's starting criteria, returns the progress action
      * </summary>

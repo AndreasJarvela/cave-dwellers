@@ -9,7 +9,6 @@ public abstract class Enemy : MonoBehaviour, IEnemy
 
 
     void Start () {
-        Debug.Log("sug en fet wiktor");
         SetState(new EnemyFreeRoamState(this));
 	}
 
