@@ -44,6 +44,7 @@ GameObject:
   - component: {fileID: 114433112007152676}
   - component: {fileID: 114035053198123334}
   - component: {fileID: 114555649604737062}
+  - component: {fileID: 114137885235742854}
   m_Layer: 0
   m_Name: Dweller
   m_TagString: Dweller
@@ -142,6 +143,41 @@ MonoBehaviour:
   bezierTangentLength: 0.4
   offset: 0.2
   factor: 0.1
+--- !u!114 &114137885235742854
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1886715677188646}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f6eb1402c17e84a9282a7f0f62eb584f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  version: 2
+  radius: 0.01
+  height: 0.01
+  repathRate: 0.5
+  canSearch: 1
+  canMove: 1
+  maxSpeed: 1
+  gravity: {x: 0, y: 0, z: 0}
+  groundMask:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  centerOffsetCompatibility: NaN
+  orientation: 1
+  enableRotation: 0
+  targetCompatibility: {fileID: 0}
+  maxAcceleration: -2.5
+  rotationSpeed: 360
+  slowdownDistance: 0
+  pickNextWaypointDist: 2
+  endReachedDistance: 0
+  alwaysDrawGizmos: 0
+  slowWhenNotFacingTarget: 1
+  whenCloseToDestination: 1
+  constrainInsideGraph: 1
 --- !u!114 &114433112007152676
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -158,8 +194,8 @@ MonoBehaviour:
   canSearch: 1
   canMove: 1
   speed: 2
+  orientation: 1
   enableRotation: 0
-  rotationIn2D: 1
   rotationSpeed: 10
   interpolatePathSwitches: 0
   switchPathInterpolationSpeed: 5
@@ -226,7 +262,8 @@ MonoBehaviour:
     useGraphRaycasting: 0
   traversableTags: -1
   tagPenalties: 0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
-  graphMask: -1
+  graphMask:
+    value: -1
 --- !u!212 &212080784338145376
 SpriteRenderer:
   m_ObjectHideFlags: 1

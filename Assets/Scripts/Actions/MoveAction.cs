@@ -25,7 +25,7 @@ public class MoveAction : IAction
     public void Update(Dweller dweller)
     {
         ai = dweller.GetComponent<IAstarAI>();
-
+        ai.isStopped = false;
         if (startAction)
         {
            dweller.GetComponent<Animator>().SetTrigger("Walk");

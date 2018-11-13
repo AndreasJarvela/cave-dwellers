@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Tilemaps;
+using Pathfinding;
 
 public class Initialize : MonoBehaviour {
 
@@ -17,6 +18,7 @@ public class Initialize : MonoBehaviour {
 
     // Use this for initialization
     void Start() {
+
         th = GetComponent<TileHandler>();
         //minimap = GameObject.Find("UI").GetComponentInChildren<Minimap>();
         bool[,] newMap = InitialiseRandomMap();
@@ -24,7 +26,7 @@ public class Initialize : MonoBehaviour {
         {
             newMap = DoSimulationStep(newMap);
         }
-        
+        AstarPath.active.logPathResults = PathLog.None;
         InitializeMap(newMap);
         PopulateWorkHandlerWithCurrentDwellers();
         StartCoroutine(ScanGraph());
@@ -34,6 +36,60 @@ public class Initialize : MonoBehaviour {
     {
         yield return new WaitForSeconds(0);
         AstarPath.active.Scan();
+        StartCoroutine(GetAllAreaNodes());
+    }
+
+
+    private Dictionary<uint, List<GraphNode>> allAreaNodes;
+
+    private IEnumerator GetAllAreaNodes()
+    {
+        yield return new WaitForSeconds(0);
+        var gg = AstarPath.active.data.gridGraph;
+        allAreaNodes = new Dictionary<uint, List<GraphNode>>();
+
+        gg.GetNodes(node => {
+            if (allAreaNodes.ContainsKey(node.Area))
+            {
+                allAreaNodes[node.Area].Add(node);
+            }
+            else
+            {
+                allAreaNodes.Add(node.Area, new List<GraphNode>());
+            }
+            return true;
+        });
+
+        List<uint> keyList = new List<uint>(allAreaNodes.Keys);
+        int count = 0;
+        foreach (uint key in keyList)
+        {
+           
+            if (allAreaNodes[key].Count <= 2 || allAreaNodes[key].Count >= 60)
+            {
+                count++;
+                List<GraphNode> nodes = allAreaNodes[key];
+
+                    gg.GetNodes(node => {
+                        if (node.Area == key)
+                        {
+                            node.Walkable = false;
+                            Grid grid = GameObject.Find("Grid").GetComponent<Grid>();
+                            Vector3Int cellPosition = grid.WorldToCell((Vector3)node.position);
+                            th.floor.SetTile(cellPosition, null);
+                            th.walls.SetTile(cellPosition, th.wallTile);
+                        }
+                        return true;
+                    });
+                
+            }
+           
+        }
+
+
+
+        // Do a flood fill to recalculate the Area fields
+        //AstarPath.active.FloodFill();
     }
 
 
@@ -102,6 +158,7 @@ public class Initialize : MonoBehaviour {
                         newMap[x,y] = false;
                     }
                 }
+
             }
         }
         return newMap;
@@ -131,6 +188,31 @@ public class Initialize : MonoBehaviour {
             }
         }
         return count;
+    }
+
+    private void RemoveDiagonalPaths(bool[,] oldMap, int x, int y)
+    {
+        int[,] get = new int[3, 3] { { 0, 1, 0 },{ 1, 0, 1 },{ 0, 1, 0 } };
+        for (int i = 0; i < 3; i++)
+        {
+            for (int j = 0; j < 3; j++)
+            {
+                int neighbour_x = x + i;
+                int neighbour_y = y + j;
+                if (i == j)
+                {
+
+                }
+                else if (neighbour_x < 0 || neighbour_y < 0 || neighbour_x > oldMap.GetUpperBound(0) || neighbour_y > oldMap.GetUpperBound(1))
+                {
+                    
+                }
+                else
+                {
+                    
+                }
+            }
+        }
     }
 
     void InitializeMap(bool[,] mapReference)

@@ -20,8 +20,7 @@ public class StopAction : IAction
     public void Update(Dweller dweller)
     {
         IAstarAI ai = dweller.GetComponent<IAstarAI>();
-        ai.destination = dweller.transform.position;
-        ai.SearchPath();
+        ai.isStopped = true;
         done = true;
     }
 }
