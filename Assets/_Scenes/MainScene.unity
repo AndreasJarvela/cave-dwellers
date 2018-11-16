@@ -1164,7 +1164,7 @@ Prefab:
     - target: {fileID: 114470979230999644, guid: 772dd87f7af550543aea2715ec07b7a4,
         type: 2}
       propertyPath: showGraphs
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 114470979230999644, guid: 772dd87f7af550543aea2715ec07b7a4,
         type: 2}

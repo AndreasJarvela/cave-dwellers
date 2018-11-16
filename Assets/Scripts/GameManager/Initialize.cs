@@ -15,17 +15,17 @@ public class Initialize : MonoBehaviour {
 
     private Minimap minimap;
 
-
     // Use this for initialization
     void Start() {
-
         th = GetComponent<TileHandler>();
+
         //minimap = GameObject.Find("UI").GetComponentInChildren<Minimap>();
         bool[,] newMap = InitialiseRandomMap();
         for (int i = 0; i < 3; ++i)
         {
             newMap = DoSimulationStep(newMap);
         }
+    
         AstarPath.active.logPathResults = PathLog.None;
         InitializeMap(newMap);
         PopulateWorkHandlerWithCurrentDwellers();
@@ -36,15 +36,15 @@ public class Initialize : MonoBehaviour {
     {
         yield return new WaitForSeconds(0);
         AstarPath.active.Scan();
-        StartCoroutine(GetAllAreaNodes());
+        GetAllAreaNodes();
     }
 
 
     private Dictionary<uint, List<GraphNode>> allAreaNodes;
 
-    private IEnumerator GetAllAreaNodes()
+    private void GetAllAreaNodes()
     {
-        yield return new WaitForSeconds(0);
+        //yield return new WaitForSeconds(0);
         var gg = AstarPath.active.data.gridGraph;
         allAreaNodes = new Dictionary<uint, List<GraphNode>>();
 
@@ -85,9 +85,6 @@ public class Initialize : MonoBehaviour {
             }
            
         }
-
-
-
         // Do a flood fill to recalculate the Area fields
         //AstarPath.active.FloodFill();
     }
@@ -188,31 +185,6 @@ public class Initialize : MonoBehaviour {
             }
         }
         return count;
-    }
-
-    private void RemoveDiagonalPaths(bool[,] oldMap, int x, int y)
-    {
-        int[,] get = new int[3, 3] { { 0, 1, 0 },{ 1, 0, 1 },{ 0, 1, 0 } };
-        for (int i = 0; i < 3; i++)
-        {
-            for (int j = 0; j < 3; j++)
-            {
-                int neighbour_x = x + i;
-                int neighbour_y = y + j;
-                if (i == j)
-                {
-
-                }
-                else if (neighbour_x < 0 || neighbour_y < 0 || neighbour_x > oldMap.GetUpperBound(0) || neighbour_y > oldMap.GetUpperBound(1))
-                {
-                    
-                }
-                else
-                {
-                    
-                }
-            }
-        }
     }
 
     void InitializeMap(bool[,] mapReference)

@@ -65,7 +65,7 @@ public class MenuInitialize : MonoBehaviour
     }
     public void OnStartGame_Click()
     {
-        SceneManager.LoadScene("MainScene");
+        SceneManager.LoadSceneAsync("MainScene");
     }
 
     public void OnExitGame_Click()

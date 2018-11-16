@@ -21,6 +21,7 @@ class MineTask : Task
     private Queue<IAction> criteraQueue;
     private Vector3 centerOfTask;
     private Vector3 targetPosition;
+    private List<Vector3> targetPositions;
 
     private bool progressTask;
 
@@ -34,6 +35,7 @@ class MineTask : Task
         tileHandler = GameObject.Find("GameManager").GetComponent<TileHandler>();
         rm = GameObject.Find("GameManager").GetComponent<ResourceManager>();
         criteraQueue = new Queue<IAction>();
+        targetPositions = new List<Vector3>();
         this.taskPosition = taskPosition;
         this.centerOfTask = taskPosition + new Vector3(0.5f, 0.5f, 0);
         tileHandler.GetToolEffectsTilemap().SetTile(taskPosition, tileHandler.GetMiningEffectsTileBase());
@@ -110,7 +112,7 @@ class MineTask : Task
             node1.Walkable = true;
             var gg = AstarPath.active.data.gridGraph;
             gg.GetNodes(node => gg.CalculateConnections((GridNodeBase)node));
-            ctx.QueueFloodFill();
+            //ctx.QueueFloodFill();
         }));
     }
 

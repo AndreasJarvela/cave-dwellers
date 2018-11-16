@@ -221,6 +221,7 @@ public class Dweller : MonoBehaviour, IDweller {
             SetState(new HungryState(this));
             return;
         }
+        
     }
 
     void Update()
